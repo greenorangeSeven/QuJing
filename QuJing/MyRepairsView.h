@@ -15,7 +15,8 @@
 
 @interface MyRepairsView : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
-    NSArray *myRepairsData;
+    NSMutableArray *myRepairsData;
+    UILabel *noDataLabel;
 }
 
 @property (strong, nonatomic) IBOutlet UIView *bgView;

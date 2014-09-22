@@ -23,7 +23,7 @@
     if (self) {
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.text = @"社区论坛";
+        titleLabel.text = @"魅力曲靖";
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [Tool getColorForGreen];
         titleLabel.textAlignment = UITextAlignmentCenter;
@@ -131,7 +131,7 @@
     else
     {
         if ([project.logo isEqualToString:@""]) {
-            project.imgData = [UIImage imageNamed:@"loadingpic2.png"];
+            project.imgData = [UIImage imageNamed:@"nopic2.png"];
         }
         else
         {
@@ -177,6 +177,7 @@
         BBSTableView *bbsView = [[BBSTableView alloc] init];
         bbsView.cid = project.id;
         bbsView.cname = project.title;
+        bbsView.project = project;
         [self.navigationController pushViewController:bbsView animated:YES];
     }
 }

@@ -26,7 +26,7 @@
     if (self) {
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 44)];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.text = @"小区商务";
+        titleLabel.text = @"业主信息";
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [Tool getColorForGreen];
         titleLabel.textAlignment = UITextAlignmentCenter;
@@ -81,7 +81,7 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    catalog = @"2";
+    catalog = @"1";
     allCount = 0;
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     commercials = [[NSMutableArray alloc] initWithCapacity:20];
@@ -268,7 +268,7 @@
             else
             {
                 if ([commer.thumb isEqualToString:@""]) {
-                    commer.imgData = [UIImage imageNamed:@"loadingpic2"];
+                    commer.imgData = [UIImage imageNamed:@"nopic2"];
                 }
                 else
                 {
@@ -298,7 +298,7 @@
     }
     else
     {
-        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"已经加载全部内容" andLoadingString:(isLoading ? loadingTip : loadNext20Tip)  andIsLoading:isLoading];
+        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"暂无数据" andLoadingString:(isLoading ? loadingTip : loadNext20Tip)  andIsLoading:isLoading];
     }
 }
 

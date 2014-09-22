@@ -11,9 +11,15 @@
 #import "RepairsFrameView.h"
 #import "NoticeFrameView.h"
 #import "ExpressView.h"
+#import "LawView.h"
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 #import "ADVDetailView.h"
+
+#import "StewardPageView.h"
+#import "CommunityView.h"
+#import "ProjectCollectionView.h"
+#import "VolunteerView.h"
 
 
 @interface MainPageView : UIViewController<SGFocusImageFrameDelegate, UIActionSheetDelegate>
@@ -31,8 +37,7 @@
 
 #pragma mark -按钮点击事件
 
-#pragma mark 便民服务
-- (IBAction)clickService:(UIButton *)sender;
+- (IBAction)clickLAW:(UIButton *)sender;
 
 #pragma mark 城市文化
 - (IBAction)clickCityCulture:(UIButton *)sender;
@@ -40,13 +45,20 @@
 #pragma mark 精选特价
 - (IBAction)clickSubtle:(UIButton *)sender;
 
+- (IBAction)zhiyuanzheAction:(UIButton *)sender;
+
 #pragma mark 联盟商家
 - (IBAction)clickBusiness:(UIButton *)sender;
 
+- (IBAction)bianminAction:(UIButton *)sender;
+
 - (IBAction)stewardFeeAction:(id)sender;
-- (IBAction)repairsAction:(id)sender;
+- (IBAction)BusniessAction:(id)sender;
 - (IBAction)noticeAction:(id)sender;
-- (IBAction)expressAction:(id)sender;
+- (IBAction)newsAction:(id)sender;
+//魅力曲靖
+- (IBAction)clickBBS:(id)sender;
+
 
 - (IBAction)shareAction:(id)sender;
 - (IBAction)advDetailAction:(id)sender;

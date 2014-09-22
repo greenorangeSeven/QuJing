@@ -25,7 +25,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UITabBarController *tabBarController;
+//@property (strong, nonatomic) UITabBarController *tabBarController;
 
 @property (strong, nonatomic) MainPageView *mainPage;
 @property (strong, nonatomic) StewardPageView *stewardPage;

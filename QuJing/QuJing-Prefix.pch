@@ -39,6 +39,7 @@
 #define api_base_url @"http://121.42.14.101:8900/api"
 #define api_register @"/register"
 #define api_login @"/login"
+#define api_changepwd @"/changePwd"
 #define api_getuserinfo @"/get_member_info"
 #define api_getregion @"/get_region"
 #define api_community @"/community"

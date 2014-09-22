@@ -115,7 +115,7 @@
                                                SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:adv.pic tag:-1];
                                                [itemArray addObject:item];
                                            }
-                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 200) delegate:self imageItems:itemArray isAuto:NO];
+                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 177) delegate:self imageItems:itemArray isAuto:NO];
                                            [bannerView scrollToIndex:0];
                                            [self.advIv addSubview:bannerView];
                                        }
@@ -160,6 +160,19 @@
     [self.pointsBtn setTitle:[NSString stringWithFormat:@"点赞( %@ )", adv.points] forState:UIControlStateNormal];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    bannerView.delegate = self;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    bannerView.delegate = nil;
+}
+
 - (void)getInBoxRemind
 {
     if ([[UserModel Instance] isLogin]) {
@@ -197,12 +210,6 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    bannerView.delegate = nil;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -224,55 +231,62 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (IBAction)clickLAW:(UIButton *)sender
 {
-    [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    LawView *lawView = [[LawView alloc] init];
+    [self.navigationController pushViewController:lawView animated:YES];
 }
 
-- (IBAction)clickService:(UIButton *)sender
+- (IBAction)bianminAction:(UIButton *)sender
 {
-    ConvView *convView = [[ConvView alloc] init];
-    convView.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:convView animated:YES];
+    ConvView *bianminView = [[ConvView alloc] init];
+    [self.navigationController pushViewController:bianminView animated:YES];
 }
 
 - (IBAction)clickCityCulture:(UIButton *)sender
 {
     CityView *cityView = [[CityView alloc] init];
-    cityView.typeStr = @"1";
-    cityView.typeNameStr = @"城市文化";
     cityView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cityView animated:YES];
 }
 
 - (IBAction)stewardFeeAction:(id)sender {
-    if ([UserModel Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
-        return;
-    }
-    StewardFeeFrameView *feeFrame = [[StewardFeeFrameView alloc] init];
-    feeFrame.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:feeFrame animated:YES];
+//    if ([UserModel Instance].isLogin == NO) {
+//        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
+//        return;
+//    }
+//    StewardFeeFrameView *feeFrame = [[StewardFeeFrameView alloc] init];
+//    feeFrame.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:feeFrame animated:YES];
+    
+    StewardPageView *stewardPage = [[StewardPageView alloc] init];
+    [self.navigationController pushViewController:stewardPage animated:YES];
 }
 
 - (IBAction)clickSubtle:(UIButton *)sender
 {
     SubtleView *subtleView = [[SubtleView alloc] init];
     subtleView.hidesBottomBarWhenPushed = YES;
-    
     [self.navigationController pushViewController:subtleView animated:YES];
 }
 
-- (IBAction)repairsAction:(id)sender {
-    if ([UserModel Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
-        return;
-    }
-    RepairsFrameView *repairsFrame = [[RepairsFrameView alloc] init];
-    repairsFrame.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:repairsFrame animated:YES];
+- (IBAction)zhiyuanzheAction:(UIButton *)sender
+{
+    VolunteerView *voluView = [[VolunteerView alloc] init];
+    voluView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:voluView animated:YES];
+}
+
+- (IBAction)BusniessAction:(id)sender {
+//    if ([UserModel Instance].isLogin == NO) {
+//        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
+//        return;
+//    }
+//    RepairsFrameView *repairsFrame = [[RepairsFrameView alloc] init];
+//    repairsFrame.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:repairsFrame animated:YES];
+    CommunityView *communityView = [[CommunityView alloc] init];
+    [self.navigationController pushViewController:communityView animated:YES];
 }
 
 - (IBAction)clickBusiness:(UIButton *)sender
@@ -289,14 +303,10 @@
     [self.navigationController pushViewController:noticeFrame animated:YES];
 }
 
-- (IBAction)expressAction:(id)sender {
-    if ([UserModel Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
-        return;
-    }
-    ExpressView *expressView = [[ExpressView alloc] init];
-    expressView.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:expressView animated:YES];
+- (IBAction)newsAction:(id)sender {
+    CityView *cityView = [[CityView alloc] init];
+    cityView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:cityView animated:YES];
 }
 
 - (IBAction)shareAction:(id)sender {
@@ -309,6 +319,12 @@
                                     nil];
         [Tool shareAction:sender andShowView:self.view andContent:contentDic];
     }
+}
+
+- (IBAction)clickBBS:(id)sender {
+    ProjectCollectionView *projectView = [[ProjectCollectionView alloc] init];
+    projectView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:projectView animated:YES];
 }
 
 - (IBAction)advDetailAction:(id)sender {

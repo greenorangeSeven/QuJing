@@ -10,7 +10,7 @@
 #import "PropertyFeeInfo.h"
 #import "EGOImageView.h"
 
-@interface StewardFeeView : UIViewController<UIActionSheetDelegate, UIPickerViewDelegate>
+@interface StewardFeeView : UIViewController<UIActionSheetDelegate, UIPickerViewDelegate,UIAlertViewDelegate>
 {
     UserModel *usermodel;
     double monthFee;

@@ -18,6 +18,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+        titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        titleLabel.text = @"曲靖新闻";
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.textColor = [Tool getColorForGreen];
+        titleLabel.textAlignment = UITextAlignmentCenter;
+        self.navigationItem.titleView = titleLabel;
+        
         UIButton *lBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
         [lBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         [lBtn setImage:[UIImage imageNamed:@"head_back"] forState:UIControlStateNormal];
@@ -36,13 +44,7 @@
 {
     [super viewDidLoad];
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-    titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = self.typeNameStr;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textColor = [Tool getColorForGreen];
-    titleLabel.textAlignment = UITextAlignmentCenter;
-    self.navigationItem.titleView = titleLabel;
+    catalog = @"1";
     
     //适配iOS7uinavigationbar遮挡问题
     if(IS_IOS7)
@@ -70,6 +72,105 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.tableView.backgroundColor = [Tool getBackgroundColor];
+    
+    [self initMainADV];
+}
+
+- (void)initMainADV
+{
+    //如果有网络连接
+    if ([UserModel Instance].isNetworkRunning) {
+        //        [Tool showHUD:@"数据加载" andView:self.view andHUD:hud];
+        NSMutableString *tempUrl = [NSMutableString stringWithFormat:@"%@%@?APPKey=%@&spaceid=4", api_base_url, api_getadv, appkey];
+        NSString *cid = [[UserModel Instance] getUserValueForKey:@"cid"];
+        if (cid != nil && [cid length] > 0) {
+            [tempUrl appendString:[NSString stringWithFormat:@"&cid=%@", cid]];
+        }
+        NSString *url = [NSString stringWithString:tempUrl];
+        [[AFOSCClient sharedClient]getPath:url parameters:Nil
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       @try {
+                                           advDatas = [Tool readJsonStrToADV:operation.responseString];
+                                           
+                                           int length = [advDatas count];
+                                           //点赞按钮初始化
+                                           Advertisement *adv = (Advertisement *)[advDatas objectAtIndex:advIndex];
+                                           
+                                           NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
+                                           if (length > 1)
+                                           {
+                                               Advertisement *adv = [advDatas objectAtIndex:length-1];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:adv.pic tag:-1];
+                                               [itemArray addObject:item];
+                                           }
+                                           for (int i = 0; i < length; i++)
+                                           {
+                                               Advertisement *adv = [advDatas objectAtIndex:i];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:adv.pic tag:-1];
+                                               [itemArray addObject:item];
+                                               
+                                           }
+                                           //添加第一张图 用于循环
+                                           if (length >1)
+                                           {
+                                               Advertisement *adv = [advDatas objectAtIndex:0];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:adv.pic tag:-1];
+                                               [itemArray addObject:item];
+                                           }
+                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 181) delegate:self imageItems:itemArray isAuto:NO];
+                                           [bannerView scrollToIndex:0];
+                                           [self.advIv addSubview:bannerView];
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+                                           //                                           if (hud != nil) {
+                                           //                                               [hud hide:YES];
+                                           //                                           }
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       if ([UserModel Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+                                       if ([UserModel Instance].isNetworkRunning) {
+                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                       }
+                                   }];
+    }
+}
+
+//顶部图片滑动点击委托协议实现事件
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
+{
+    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title);
+    Advertisement *adv = (Advertisement *)[advDatas objectAtIndex:advIndex];
+    if (adv) {
+        ADVDetailView *advDetail = [[ADVDetailView alloc] init];
+        advDetail.hidesBottomBarWhenPushed = YES;
+        advDetail.adv = adv;
+        [self.navigationController pushViewController:advDetail animated:YES];
+    }
+}
+
+//顶部图片自动滑动委托协议实现事件
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
+{
+    //    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
+    advIndex = index;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    bannerView.delegate = self;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    bannerView.delegate = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -110,6 +211,14 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)reloadType:(NSString *)ncatalog
+{
+    catalog = ncatalog;
+    [self clear];
+    [self.tableView reloadData];
+    [self reload:NO];
+}
+
 - (void)clear
 {
     allCount = 0;
@@ -148,7 +257,7 @@
             allCount = 0;
         }
         int pageIndex = allCount / 20 + 1;
-        NSMutableString *tempUrl = [NSMutableString stringWithFormat:@"%@%@?APPKey=%@&catid=%@&p=%i", api_base_url, api_get_wisdom_list, appkey,self.typeStr,pageIndex];
+        NSMutableString *tempUrl = [NSMutableString stringWithFormat:@"%@%@?APPKey=%@&catid=%@&p=%i", api_base_url, api_get_wisdom_list, appkey,catalog,pageIndex];
         
          NSString *url = [NSString stringWithString:tempUrl];
         [[AFOSCClient sharedClient] getPath:url parameters:Nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -313,7 +422,7 @@
             else
             {
                 if ([city.thumb isEqualToString:@""]) {
-                    city.imgData = [UIImage imageNamed:@"loadingpic2"];
+                    city.imgData = [UIImage imageNamed:@"nopic2"];
                 }
                 else
                 {
@@ -343,7 +452,7 @@
     }
     else
     {
-        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"已经加载全部内容" andLoadingString:(isLoading ? loadingTip : loadNext20Tip)  andIsLoading:isLoading];
+        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"暂无数据" andLoadingString:(isLoading ? loadingTip : loadNext20Tip)  andIsLoading:isLoading];
     }
 }
 
@@ -379,6 +488,27 @@
             [self.navigationController pushViewController:cityDetailView animated:YES];
         }
     }
+}
+
+- (IBAction)item1Action:(id)sender {
+    [self reloadType:@"1"];
+    [self.item1Btn setTitleColor:[Tool getColorForGreen] forState:UIControlStateNormal];
+    [self.item2Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.item3Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+}
+
+- (IBAction)item2Action:(id)sender {
+    [self reloadType:@"2"];
+    [self.item1Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.item2Btn setTitleColor:[Tool getColorForGreen] forState:UIControlStateNormal];
+    [self.item3Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+}
+
+- (IBAction)item3Action:(id)sender {
+    [self reloadType:@"3"];
+    [self.item1Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.item2Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.item3Btn setTitleColor:[Tool getColorForGreen] forState:UIControlStateNormal];
 }
 
 @end

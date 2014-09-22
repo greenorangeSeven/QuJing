@@ -146,6 +146,13 @@
     advIndex = index;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    bannerView.delegate = self;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -161,8 +168,6 @@
 - (IBAction)clickCity:(UIButton *)sender
 {
     CityView *cityView = [[CityView alloc] init];
-    cityView.typeStr = @"1";
-    cityView.typeNameStr = @"城市文化";
     cityView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cityView animated:YES];
 }
@@ -170,8 +175,6 @@
 - (IBAction)clickDongmeng:(UIButton *)sender
 {
     CityView *cityView = [[CityView alloc] init];
-    cityView.typeStr = @"2";
-    cityView.typeNameStr = @"魅力曲靖";
     cityView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cityView animated:YES];
 }

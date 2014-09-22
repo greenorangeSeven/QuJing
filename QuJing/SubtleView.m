@@ -126,7 +126,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    bannerView.delegate = self;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.navigationController.navigationBar.hidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    bannerView.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,7 +162,7 @@
 - (IBAction)hotProductAction:(id)sender {
     BusinessDetailView *businessDetailView = [[BusinessDetailView alloc] init];
     businessDetailView.tjTitle = @"热门商品";
-    businessDetailView.tjCatId = @"4";
+    businessDetailView.tjCatId = @"5";
     businessDetailView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:businessDetailView animated:YES];
 }

@@ -51,7 +51,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
     UserModel *usermodel = [UserModel Instance];
     
     faceEGOImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"userface.png"]];
@@ -72,11 +71,11 @@
     self.emailTf.text = emailStr;
     self.idCodeTf.text = idcodeStr;
     //用户是否已认证，已认证后真实信息不能修改
-    if ([[usermodel getUserValueForKey:@"checkin"] isEqualToString:@"1"]) {
-        self.nameTf.enabled = NO;
-        self.selectHomeAddressBtn.enabled = NO;
-        self.idCodeTf.enabled = NO;
-    }
+    //    if ([[usermodel getUserValueForKey:@"checkin"] isEqualToString:@"1"]) {
+    //        self.nameTf.enabled = NO;
+    //        self.selectHomeAddressBtn.enabled = NO;
+    //        self.idCodeTf.enabled = NO;
+    //    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -115,6 +114,14 @@
     NSString *homeAddressStr = self.homeAddressLb.text;
     NSString *emailStr = self.emailTf.text;
     NSString *idcodeStr = self.idCodeTf.text;
+    if (nicknameStr == nil || [nicknameStr length] == 0) {
+        [Tool showCustomHUD:@"请填写昵称" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
+    if (nameStr == nil || [nameStr length] == 0) {
+        [Tool showCustomHUD:@"请填写姓名" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
     if ([emailStr length] > 0 && ![emailStr isValidEmail]) {
         [Tool showCustomHUD:@"邮箱格式错误" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
@@ -131,9 +138,20 @@
     [request setPostValue:appkey forKey:@"APPKey"];
     [request setPostValue:[usermodel getUserValueForKey:@"id"] forKey:@"id"];
     [request setPostValue:[usermodel getUserValueForKey:@"tel"] forKey:@"tel"];
-    [request setPostValue:[usermodel getUserValueForKey:@"selectCommunityId"] forKey:@"cid"];
-    [request setPostValue:[usermodel getUserValueForKey:@"selectBuildId"] forKey:@"build_id"];
-    [request setPostValue:[usermodel getUserValueForKey:@"selectHouseStr"] forKey:@"house_number"];
+    NSString * selectCommunityId = [usermodel getUserValueForKey:@"selectCommunityId"];
+    NSString * selectBuildId = [usermodel getUserValueForKey:@"selectBuildId"];
+    NSString * selectHouseStr = [usermodel getUserValueForKey:@"selectHouseStr"];
+    if (![selectCommunityId isEqualToString:@""] && ![selectBuildId isEqualToString:@""] && ![selectHouseStr isEqualToString:@""]) {
+        [request setPostValue:selectCommunityId forKey:@"cid"];
+        [request setPostValue:selectBuildId forKey:@"build_id"];
+        [request setPostValue:selectHouseStr forKey:@"house_number"];
+    }
+    else
+    {
+        [request setPostValue:[usermodel getUserValueForKey:@"cid"] forKey:@"cid"];
+        [request setPostValue:[usermodel getUserValueForKey:@"build_id"] forKey:@"build_id"];
+        [request setPostValue:[usermodel getUserValueForKey:@"house_number"] forKey:@"house_number"];
+    }
     [request setPostValue:emailStr forKey:@"email"];
     [request setPostValue:idcodeStr forKey:@"card_id"];
     [request setPostValue:nameStr forKey:@"name"];
@@ -182,9 +200,17 @@
         case 1:
         {
             UserModel *userModel = [UserModel Instance];
-            [userModel saveValue:[userModel getUserValueForKey:@"selectCommunityId"] ForKey:@"cid"];
-            [userModel saveValue:[userModel getUserValueForKey:@"selectBuildId"] ForKey:@"build_id"];
-            [userModel saveValue:[userModel getUserValueForKey:@"selectHouseStr"] ForKey:@"house_number"];
+            NSString * selectCommunityId = [userModel getUserValueForKey:@"selectCommunityId"];
+            NSString * selectBuildId = [userModel getUserValueForKey:@"selectBuildId"];
+            NSString * selectHouseStr = [userModel getUserValueForKey:@"selectHouseStr"];
+            if (![selectCommunityId isEqualToString:@""] && ![selectBuildId isEqualToString:@""] && ![selectHouseStr isEqualToString:@""]) {
+                [userModel saveValue:selectCommunityId ForKey:@"cid"];
+                [userModel saveValue:selectBuildId ForKey:@"build_id"];
+                [userModel saveValue:selectHouseStr ForKey:@"house_number"];
+                [userModel saveValue:[userModel getUserValueForKey:@"selectCommunityStr"] ForKey:@"comm_name"];
+                [userModel saveValue:[userModel getUserValueForKey:@"selectBuildStr"] ForKey:@"build_name"];
+            }
+            
             [userModel saveValue:self.nameTf.text ForKey:@"name"];
             [userModel saveValue:self.nicknameTf.text ForKey:@"nickname"];
             [userModel saveValue:self.homeAddressLb.text ForKey:@"address"];

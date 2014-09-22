@@ -16,7 +16,7 @@ BMKMapManager* _mapManager;
 @synthesize stewardPage;
 @synthesize lifePage;
 @synthesize shopCarPage;
-@synthesize tabBarController;
+//@synthesize tabBarController;
 @synthesize cityPage;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -36,50 +36,50 @@ BMKMapManager* _mapManager;
     
     //首页
     self.mainPage = [[MainPageView alloc] initWithNibName:@"MainPageView" bundle:nil];
-    mainPage.tabBarItem.image = [UIImage imageNamed:@"tab_main"];
-    mainPage.tabBarItem.title = @"首页";
+//    mainPage.tabBarItem.image = [UIImage imageNamed:@"tab_main"];
+//    mainPage.tabBarItem.title = @"首页";
     UINavigationController *mainPageNav = [[UINavigationController alloc] initWithRootViewController:self.mainPage];
-    //智慧物业
-    self.stewardPage = [[StewardPageView alloc] initWithNibName:@"StewardPageView" bundle:nil];
-    stewardPage.tabBarItem.image = [UIImage imageNamed:@"tab_steward"];
-    stewardPage.tabBarItem.title = @"智慧物业";
-    UINavigationController *stewardPageNav = [[UINavigationController alloc] initWithRootViewController:self.stewardPage];
-    //智慧生活
-    self.lifePage = [[LifePageView alloc] initWithNibName:@"LifePageView" bundle:nil];
-    lifePage.tabBarItem.image = [UIImage imageNamed:@"tab_life"];
-    lifePage.tabBarItem.title = @"智慧生活";
-    UINavigationController *lifePageNav = [[UINavigationController alloc] initWithRootViewController:self.lifePage];
-    //智慧城市
-    self.cityPage = [[CityPageView alloc] initWithNibName:@"CityPageView" bundle:nil];
-    cityPage.tabBarItem.image = [UIImage imageNamed:@"tab_nanning"];
-    cityPage.tabBarItem.title = @"智慧曲靖";
-    UINavigationController *cityPageNav = [[UINavigationController alloc] initWithRootViewController:self.cityPage];
-    
-    //购物车
-    self.shopCarPage = [[ShoppingCartView alloc] initWithNibName:@"ShoppingCartView" bundle:nil];
-    shopCarPage.tabBarItem.image = [UIImage imageNamed:@"tab_shopcar"];
-    shopCarPage.tabBarItem.title = @"购物车";
-    UINavigationController *shopcarPageNav = [[UINavigationController alloc] initWithRootViewController:self.shopCarPage];
-    
-    
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:
-                                             mainPageNav,
-                                             stewardPageNav,
-                                             lifePageNav,
-                                             cityPageNav,
-                                             shopcarPageNav,
-                                             nil];
-    [[self.tabBarController tabBar] setSelectedImageTintColor:[Tool getColorForGreen]];
-    [[self.tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
-    //设置UINavigationController背景
-    if (IS_IOS7) {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg7"]  forBarMetrics:UIBarMetricsDefault];
-    }
-    else
-    {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"]  forBarMetrics:UIBarMetricsDefault];
-    }
+//    //智慧物业
+//    self.stewardPage = [[StewardPageView alloc] initWithNibName:@"StewardPageView" bundle:nil];
+//    stewardPage.tabBarItem.image = [UIImage imageNamed:@"tab_steward"];
+//    stewardPage.tabBarItem.title = @"智慧物业";
+//    UINavigationController *stewardPageNav = [[UINavigationController alloc] initWithRootViewController:self.stewardPage];
+//    //智慧生活
+//    self.lifePage = [[LifePageView alloc] initWithNibName:@"LifePageView" bundle:nil];
+//    lifePage.tabBarItem.image = [UIImage imageNamed:@"tab_life"];
+//    lifePage.tabBarItem.title = @"智慧生活";
+//    UINavigationController *lifePageNav = [[UINavigationController alloc] initWithRootViewController:self.lifePage];
+//    //智慧城市
+//    self.cityPage = [[CityPageView alloc] initWithNibName:@"CityPageView" bundle:nil];
+//    cityPage.tabBarItem.image = [UIImage imageNamed:@"tab_nanning"];
+//    cityPage.tabBarItem.title = @"智慧曲靖";
+//    UINavigationController *cityPageNav = [[UINavigationController alloc] initWithRootViewController:self.cityPage];
+//    
+//    //购物车
+//    self.shopCarPage = [[ShoppingCartView alloc] initWithNibName:@"ShoppingCartView" bundle:nil];
+//    shopCarPage.tabBarItem.image = [UIImage imageNamed:@"tab_shopcar"];
+//    shopCarPage.tabBarItem.title = @"购物车";
+//    UINavigationController *shopcarPageNav = [[UINavigationController alloc] initWithRootViewController:self.shopCarPage];
+//    
+//    
+//    self.tabBarController = [[UITabBarController alloc] init];
+//    self.tabBarController.viewControllers = [NSArray arrayWithObjects:
+//                                             mainPageNav,
+//                                             stewardPageNav,
+//                                             lifePageNav,
+//                                             cityPageNav,
+//                                             shopcarPageNav,
+//                                             nil];
+//    [[self.tabBarController tabBar] setSelectedImageTintColor:[Tool getColorForGreen]];
+//    [[self.tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
+//    //设置UINavigationController背景
+//    if (IS_IOS7) {
+//        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg7"]  forBarMetrics:UIBarMetricsDefault];
+//    }
+//    else
+//    {
+//        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"]  forBarMetrics:UIBarMetricsDefault];
+//    }
     
     // 要使用百度地图，请先启动BaiduMapManager
 	_mapManager = [[BMKMapManager alloc]init];
@@ -95,7 +95,7 @@ BMKMapManager* _mapManager;
     [self addSkipBackupAttributeToPath:directory];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:self.tabBarController ];
+    [self.window setRootViewController:mainPageNav ];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

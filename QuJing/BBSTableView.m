@@ -96,6 +96,11 @@
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableData) name:Notification_RefreshBBS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableDataAll) name:Notification_ADDBBS object:nil];
+    
+    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
+    imageView.imageURL = [NSURL URLWithString:_project.logo];
+    imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 145.0f);
+    [_logoIV addSubview:imageView];
 }
 
 - (void)refreshTableData
@@ -378,7 +383,7 @@
                 cell.imageIv.frame = CGRectMake(cell.imageIv.frame .origin.x, cell.contentLb.frame.origin.y + cell.contentLb.frame.size.height, cell.imageIv.frame.size.width, cell.imageIv.frame.size.height);
                 cell.timeView.frame = CGRectMake(cell.timeView.frame .origin.x, cell.imageIv.frame.origin.y + cell.imageIv.frame.size.height, cell.timeView.frame.size.width, cell.timeView.frame.size.height);
                 
-                EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic2.png"]];
+                EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"nopic2.png"]];
                 imageView.imageURL = [NSURL URLWithString:[bbs.thumb objectAtIndex:0]];
                 imageView.frame = CGRectMake(0.0f, 0.0f, cell.imageIv.frame.size.width, cell.imageIv.frame.size.height);
                 [cell.imageIv addSubview:imageView];
@@ -460,7 +465,7 @@
     }
     else
     {
-        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"已经加载全部内容" andLoadingString:(isLoading ? loadingTip : loadNext20Tip)  andIsLoading:isLoading];
+        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"暂无数据" andLoadingString:(isLoading ? loadingTip : loadNext20Tip)  andIsLoading:isLoading];
     }
 }
 

@@ -36,6 +36,15 @@
     self.myRepairsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self reload];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:Notification_RefreshMyRepairs object:nil];
+    
+    noDataLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height/2-100, 320, 44)];
+    noDataLabel.font = [UIFont boldSystemFontOfSize:18];
+    noDataLabel.text = @"暂无报修";
+    noDataLabel.textColor = [UIColor blackColor];
+    noDataLabel.backgroundColor = [UIColor clearColor];
+    noDataLabel.textAlignment = UITextAlignmentCenter;
+    noDataLabel.hidden = YES;
+    [self.view addSubview:noDataLabel];
 }
 
 - (void)reload
@@ -46,7 +55,13 @@
         [[AFOSCClient sharedClient]getPath:url parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
+                                           [myRepairsData removeAllObjects];
+                                           noDataLabel.hidden = YES;
                                            myRepairsData = [Tool readJsonStrToMyRepairs:operation.responseString];
+                                           if (myRepairsData == nil || [myRepairsData count] > 0)
+                                           {
+                                               noDataLabel.hidden = NO;
+                                           }
                                            [self.myRepairsTable reloadData];
                                        }
                                        @catch (NSException *exception) {

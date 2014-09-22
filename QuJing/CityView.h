@@ -14,7 +14,11 @@
 #import "CityCell.h"
 #import "CityDetailView.h"
 
-@interface CityView : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate,IconDownloaderDelegate>
+#import "SGFocusImageFrame.h"
+#import "SGFocusImageItem.h"
+#import "ADVDetailView.h"
+
+@interface CityView : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate,IconDownloaderDelegate,SGFocusImageFrameDelegate>
 {
     NSMutableArray *cityArray;
     BOOL isLoading;
@@ -25,20 +29,44 @@
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
     
+    NSString *catalog;
     BOOL isInitialize;
     TQImageCache * _iconCache;
     
     UIWebView *phoneCallWebView;
     
     MBProgressHUD *hud;
+    
+    NSMutableArray *advDatas;
+    SGFocusImageFrame *bannerView;
+    int advIndex;
 }
 
-@property (weak, nonatomic) NSString *typeStr;
-@property (weak, nonatomic) NSString *typeNameStr;
+@property (weak, nonatomic) IBOutlet UIImageView *advIv;
 
 //异步加载图片专用
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
+- (void)startIconDownload:(ImgRecord *)imgRecord forIndexPath:(NSIndexPath *)indexPath;
+
+- (void)reloadType:(NSString *)ncatalog;
+- (void)reload:(BOOL)noRefresh;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+//清空
+- (void)clear;
+
+//下拉刷新
+- (void)refresh;
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
+
+@property (weak, nonatomic) IBOutlet UIButton *item1Btn;
+@property (weak, nonatomic) IBOutlet UIButton *item2Btn;
+@property (weak, nonatomic) IBOutlet UIButton *item3Btn;
+
+- (IBAction)item1Action:(id)sender;
+- (IBAction)item2Action:(id)sender;
+- (IBAction)item3Action:(id)sender;
 
 @end

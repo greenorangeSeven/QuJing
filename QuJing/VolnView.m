@@ -21,7 +21,7 @@
     if (self) {
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.text = @"志愿者";
+        titleLabel.text = @"志愿者动态";
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [Tool getColorForGreen];
         titleLabel.textAlignment = UITextAlignmentCenter;
@@ -314,7 +314,7 @@
             else
             {
                 if ([city.thumb isEqualToString:@""]) {
-                    city.imgData = [UIImage imageNamed:@"loadingpic2"];
+                    city.imgData = [UIImage imageNamed:@"nopic2"];
                 }
                 else
                 {
