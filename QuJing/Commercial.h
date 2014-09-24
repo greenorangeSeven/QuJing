@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString *customer_id;
 @property (nonatomic, retain) NSString *status;
 @property (nonatomic, retain) NSString *comm_name;
+@property (nonatomic, retain) NSString *hits;
 
 @property (retain,nonatomic) UIImage * imgData;
 @property (nonatomic, retain) NSString *timeStr;

@@ -79,6 +79,22 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    [self getDetailInfo];
+}
+
+- (void)getDetailInfo
+{
+    
+    NSString *userId = [[UserModel Instance] getUserValueForKey:@"id"];
+    if (userId == nil || [userId length] == 0) {
+        userId = @"0";
+    }
+    NSString *delUrl = [NSString stringWithFormat:@"%@%@?APPKey=%@&userid=%@&id=%@", api_base_url, api_commercialinfo, appkey, userId, self.commer.id];
+    NSURL *url = [ NSURL URLWithString : delUrl];
+    // 构造 ASIHTTPRequest 对象
+    ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
+    // 开始同步请求
+    [request startSynchronous ];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewP

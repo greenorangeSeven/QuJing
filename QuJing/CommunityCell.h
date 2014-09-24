@@ -18,5 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;
 @property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
 @property (weak, nonatomic) IBOutlet UIButton *telBtn;
+@property (weak, nonatomic) IBOutlet UIButton *delBtn;
+@property (weak, nonatomic) IBOutlet UILabel *guanzhuLb;
 
 @end

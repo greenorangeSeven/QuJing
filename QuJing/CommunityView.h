@@ -11,7 +11,7 @@
 #import "Commercial.h"
 #import "CommunityDetailView.h"
 
-@interface CommunityView : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate,IconDownloaderDelegate>
+@interface CommunityView : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate,IconDownloaderDelegate, UIAlertViewDelegate>
 {
     NSMutableArray *commercials;
     BOOL isLoading;
@@ -27,6 +27,8 @@
     TQImageCache * _iconCache;
     
     UIWebView *phoneCallWebView;
+    
+    NSString *userId;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *item1Btn;

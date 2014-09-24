@@ -43,20 +43,33 @@
                                 <color key="textColor" red="0.42745098039215684" green="0.42745098039215684" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WGD-Jg-LJl">
-                                <rect key="frame" x="152" y="86" width="47" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="cm_ attention.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OTy-bK-chw">
-                                <rect key="frame" x="237" y="86" width="46" height="22"/>
+                                <rect key="frame" x="253" y="86" width="46" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="cm_phone.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AUD-Sz-KAB">
+                                <rect key="frame" x="196" y="83" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="删除">
+                                    <color key="titleColor" red="0.070588235289999995" green="0.56470588239999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cm_guanzhu.png" id="U8N-hC-Gzp">
+                                <rect key="frame" x="99" y="87" width="17" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人关注" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TGF-0H-WIn">
+                                <rect key="frame" x="118" y="88" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.070588235289999995" green="0.56470588239999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -65,9 +78,10 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="attentionBtn" destination="WGD-Jg-LJl" id="p4h-re-cK4"/>
                 <outlet property="commNameLb" destination="UE3-wT-ITK" id="094-am-9pY"/>
                 <outlet property="contentLb" destination="3Tn-Ex-TaE" id="RNu-VF-YNM"/>
+                <outlet property="delBtn" destination="AUD-Sz-KAB" id="UgM-Es-hs3"/>
+                <outlet property="guanzhuLb" destination="TGF-0H-WIn" id="tc2-ik-XPT"/>
                 <outlet property="picIv" destination="Ixg-Yz-pEf" id="WH2-lc-Mth"/>
                 <outlet property="telBtn" destination="OTy-bK-chw" id="tya-VC-UCI"/>
                 <outlet property="timeLb" destination="HqF-g6-X0g" id="0Lp-pE-7Il"/>
@@ -75,8 +89,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cm_ attention.png" width="46" height="19"/>
         <image name="cm_community_temp.png" width="92" height="70"/>
+        <image name="cm_guanzhu.png" width="17" height="19"/>
         <image name="cm_phone.png" width="46" height="19"/>
     </resources>
 </document>

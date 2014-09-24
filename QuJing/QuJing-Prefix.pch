@@ -80,9 +80,12 @@
 #define api_articlepiclist @"/get_article_piclist"
 #define api_articlelist @"/get_article_list"
 #define api_commerciallist @"/get_business_info_list"
+#define api_commercialinfo @"/get_bussiness_info"
+#define api_delcommercial @"/del_bussiness_info"
 #define api_bbslist @"/bbs"
 #define api_replybbs @"/reply_subject"
 #define api_addbbs @"/add_bbs_subject"
+#define api_delbbs @"/del_bbs_subject"
 
 //商品下单地址
 #define api_send_order @"/send_order"

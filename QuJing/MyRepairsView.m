@@ -30,6 +30,13 @@
 {
     [super viewDidLoad];
     [Tool roundView:self.bgView andCornerRadius:3.0];
+    if (!IS_IPHONE_5) {
+        self.myRepairsTable.frame = CGRectMake(self.myRepairsTable.frame.origin.x, self.myRepairsTable.frame.origin.y, self.myRepairsTable.frame.size.width, self.myRepairsTable.frame.size.height-180);
+    }
+    else
+    {
+        self.myRepairsTable.frame = CGRectMake(self.myRepairsTable.frame.origin.x, self.myRepairsTable.frame.origin.y, self.myRepairsTable.frame.size.width, self.myRepairsTable.frame.size.height-110);
+    }
     self.myRepairsTable.dataSource = self;
     self.myRepairsTable.delegate = self;
     //    设置无分割线

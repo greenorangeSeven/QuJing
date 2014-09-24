@@ -33,7 +33,7 @@
     [super viewDidLoad];
     [Tool roundView:self.bgView andCornerRadius:3.0];
     if (!IS_IPHONE_5) {
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 443);
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 473);
     }
     
     usermodel = [UserModel Instance];
@@ -237,8 +237,8 @@
         {
             PayOrder *pro = [[PayOrder alloc] init];
             pro.out_no = num.trade_no;
-            pro.subject = @"美世界停车费";
-            pro.body = @"美世界停车费在线缴纳";
+            pro.subject = @"曲靖智慧社区停车费";
+            pro.body = @"曲靖智慧社区停车费在线缴纳";
             pro.price = 0.01;
             pro.partnerID = [usermodel getUserValueForKey:@"DEFAULT_PARTNER"];
             pro.partnerPrivKey = [usermodel getUserValueForKey:@"PRIVATE"];
