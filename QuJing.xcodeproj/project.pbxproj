@@ -1551,6 +1551,7 @@
 				1438275D19C5F0290089CDCF /* libz.1.2.5.dylib in Frameworks */,
 				14382B3319C5F2690089CDCF /* libbaidumapapi.a in Frameworks */,
 				1438275B19C5F0200089CDCF /* Security.framework in Frameworks */,
+				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				14382CD519C5F4DD0089CDCF /* SinaWeiboConnection.framework in Frameworks */,
 				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				1438275919C5F0180089CDCF /* libsqlite3.dylib in Frameworks */,
