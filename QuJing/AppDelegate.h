@@ -14,7 +14,6 @@
 #import "SettingView.h"
 #import "CityPageView.h"
 #import "ShoppingCartView.h"
-
 #import "BMapKit.h"
 #import <sys/xattr.h>
 #import "WXApi.h"

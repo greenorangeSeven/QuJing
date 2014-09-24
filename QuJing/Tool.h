@@ -49,6 +49,8 @@
 #import "CityInfo.h"
 #import "BBSModel.h"
 #import "BBSReplyModel.h"
+#import "CommService.h"
+#import "CommServiceInfo.h"
 
 @interface Tool : NSObject
 
@@ -151,10 +153,12 @@
 + (NSMutableArray *)readJsonStrToShopsCate:(NSString *)str;
 + (BusinessGoods *)readJsonStrBusinessGoods:(NSString *)str;
 + (OrdersNum *)readJsonStrToOrdersNum:(NSString *)str;
++ (NSMutableArray *)readJsonStrToComm:(NSString *)str;
 + (Goods *)readJsonStrToGoodsInfo:(NSString *)str;
 + (Coupons *)readJsonStrToCouponDetail:(NSString *)str;
 + (NSMutableArray *)readJsonStrToGoodsArray:(NSString *)str;
 + (Shop *)readJsonStrToShopInfo:(NSString *)str;
++ (CommServiceInfo *)readJsonStrToCommServiceInfo:(NSString *)str;
 + (NSMutableArray *)readJsonStrToFeeHistory:(NSString *)str;
 + (NSMutableArray *)readJsonStrToMyOrder:(NSString *)str;
 + (ResponseCode *)readJsonStrToResponseCode:(NSString *)str;

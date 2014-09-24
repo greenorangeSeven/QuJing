@@ -303,7 +303,8 @@
     [self.navigationController pushViewController:noticeFrame animated:YES];
 }
 
-- (IBAction)newsAction:(id)sender {
+- (IBAction)newsAction:(id)sender
+{
     CityView *cityView = [[CityView alloc] init];
     cityView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cityView animated:YES];

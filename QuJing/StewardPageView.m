@@ -7,6 +7,7 @@
 //
 
 #import "StewardPageView.h"
+#import "CommunityServiceView.h"
 
 @interface StewardPageView ()
 
@@ -203,7 +204,14 @@
     [self.navigationController pushViewController:expressView animated:YES];
 }
 
-- (IBAction)arttileAction:(id)sender {
+- (IBAction)arttileAction:(id)sender
+{
+    
+    if ([UserModel Instance].isLogin == NO)
+    {
+        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
+        return;
+    }
     ArticleView *artView = [[ArticleView alloc] init];
     artView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:artView animated:YES];
@@ -216,10 +224,19 @@
 
 - (IBAction)telAction:(id)sender{
     NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", servicephone]];
-    if (!phoneCallWebView) {
+    if (!phoneCallWebView)
+    {
         phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
     [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+}
+
+- (IBAction)serviceAction:(id)sender
+{
+    CommunityServiceView *commView = [[CommunityServiceView alloc] init];
+    commView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:commView animated:YES];
+
 }
 
 @end
