@@ -96,10 +96,8 @@
     //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableData) name:Notification_RefreshBBS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableDataAll) name:Notification_ADDBBS object:nil];
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
-    imageView.imageURL = [NSURL URLWithString:_project.logo];
-    imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 145.0f);
-    [_logoIV addSubview:imageView];
+    
+    _logoIV.image = _project.imgData;
     
     userId = [[UserModel Instance] getUserValueForKey:@"id"];
 }

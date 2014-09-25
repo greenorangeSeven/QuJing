@@ -567,6 +567,8 @@
 		14382CED19C5F4F50089CDCF /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14382CEC19C5F4F50089CDCF /* VPImageCropperViewController.m */; };
 		14382CF119C5F4FE0089CDCF /* ZJSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14382CF019C5F4FE0089CDCF /* ZJSwitch.m */; };
 		14392D3C19C6BBF70073903E /* ExpressCompany.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14392D3B19C6BBF70073903E /* ExpressCompany.plist */; };
+		1447B15719D2C07500492D55 /* alipayBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1447B15519D2C07500492D55 /* alipayBtn@2x.png */; };
+		1447B15819D2C07500492D55 /* alipayFeeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1447B15619D2C07500492D55 /* alipayFeeBtn@2x.png */; };
 		148652A919CA8AD4000B3678 /* mainzyznew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148652A119CA8AD4000B3678 /* mainzyznew@2x.png */; };
 		148652AA19CA8AD4000B3678 /* mainfznew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148652A219CA8AD4000B3678 /* mainfznew@2x.png */; };
 		148652AB19CA8AD4000B3678 /* mainzknew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148652A319CA8AD4000B3678 /* mainzknew@2x.png */; };
@@ -1467,6 +1469,8 @@
 		14382CEF19C5F4FE0089CDCF /* ZJSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSwitch.h; sourceTree = "<group>"; };
 		14382CF019C5F4FE0089CDCF /* ZJSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSwitch.m; sourceTree = "<group>"; };
 		14392D3B19C6BBF70073903E /* ExpressCompany.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExpressCompany.plist; sourceTree = "<group>"; };
+		1447B15519D2C07500492D55 /* alipayBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alipayBtn@2x.png"; sourceTree = "<group>"; };
+		1447B15619D2C07500492D55 /* alipayFeeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alipayFeeBtn@2x.png"; sourceTree = "<group>"; };
 		148652A119CA8AD4000B3678 /* mainzyznew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainzyznew@2x.png"; sourceTree = "<group>"; };
 		148652A219CA8AD4000B3678 /* mainfznew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainfznew@2x.png"; sourceTree = "<group>"; };
 		148652A319CA8AD4000B3678 /* mainzknew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainzknew@2x.png"; sourceTree = "<group>"; };
@@ -1951,6 +1955,8 @@
 		1438275219C5EF7E0089CDCF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1447B15519D2C07500492D55 /* alipayBtn@2x.png */,
+				1447B15619D2C07500492D55 /* alipayFeeBtn@2x.png */,
 				141C463519CB0E3D0035322A /* head_shopcar@2x.png */,
 				141C462419CB07360035322A /* zyzdt@2x.png */,
 				141C462519CB07360035322A /* zyzbm@2x.png */,
@@ -3043,6 +3049,7 @@
 				143827DE19C5F15C0089CDCF /* StewardFeeFrameView.xib in Resources */,
 				148652AB19CA8AD4000B3678 /* mainzknew@2x.png in Resources */,
 				14382A1119C5F1B20089CDCF /* detail@2x.png in Resources */,
+				1447B15719D2C07500492D55 /* alipayBtn@2x.png in Resources */,
 				143829FF19C5F1B20089CDCF /* main_subtle@2x.png in Resources */,
 				1438288019C5F1740089CDCF /* SubtleCell.xib in Resources */,
 				14382A5519C5F1B20089CDCF /* tab_shopcar@2x.png in Resources */,
@@ -3225,6 +3232,7 @@
 				148652AD19CA8AD4000B3678 /* mainxwnew@2x.png in Resources */,
 				143829DC19C5F1B20089CDCF /* conv_order_temp.png in Resources */,
 				140D56F519D14B0400C8C067 /* BBSTableView.xib in Resources */,
+				1447B15819D2C07500492D55 /* alipayFeeBtn@2x.png in Resources */,
 				143829F619C5F1B20089CDCF /* detail_menubg.png in Resources */,
 				1438288A19C5F1740089CDCF /* BusinessDetailView.xib in Resources */,
 				143829EF19C5F1B20089CDCF /* goods_buy@2x.png in Resources */,
