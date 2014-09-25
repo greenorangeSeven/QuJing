@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043EBCAF19D2A29D00F7CEE7 /* CommServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EBCAE19D2A29D00F7CEE7 /* CommServiceInfo.m */; };
+		046B414219D25EA60056334B /* wuye_service.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B414019D25EA60056334B /* wuye_service.png */; };
+		046B414C19D26ED70056334B /* CommunityServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B414A19D26ED70056334B /* CommunityServiceView.m */; };
+		046B415019D26F600056334B /* CommunityServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B414D19D26F600056334B /* CommunityServiceCell.m */; };
+		046B415119D26F600056334B /* CommunityServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046B414F19D26F600056334B /* CommunityServiceCell.xib */; };
+		046B415519D26FE50056334B /* ServiceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046B415219D26FE50056334B /* ServiceDetailView.xib */; };
+		046B415619D26FE50056334B /* ServiceDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B415419D26FE50056334B /* ServiceDetailView.m */; };
+		046B415819D272A80056334B /* CommunityServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046B415719D272A80056334B /* CommunityServiceView.xib */; };
+		046B415C19D2792D0056334B /* CommService.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B415B19D2792D0056334B /* CommService.m */; };
 		140D56F419D14B0400C8C067 /* BBSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140D56EF19D14B0400C8C067 /* BBSTableView.m */; };
 		140D56F519D14B0400C8C067 /* BBSTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140D56F019D14B0400C8C067 /* BBSTableView.xib */; };
 		140D56F619D14B0400C8C067 /* BBSTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140D56F219D14B0400C8C067 /* BBSTableCell.m */; };
@@ -592,6 +601,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		043EBCAD19D2A29D00F7CEE7 /* CommServiceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommServiceInfo.h; sourceTree = "<group>"; };
+		043EBCAE19D2A29D00F7CEE7 /* CommServiceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommServiceInfo.m; sourceTree = "<group>"; };
+		046B414019D25EA60056334B /* wuye_service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wuye_service.png; sourceTree = "<group>"; };
+		046B414A19D26ED70056334B /* CommunityServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityServiceView.m; sourceTree = "<group>"; };
+		046B414D19D26F600056334B /* CommunityServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityServiceCell.m; sourceTree = "<group>"; };
+		046B414E19D26F600056334B /* CommunityServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityServiceCell.h; sourceTree = "<group>"; };
+		046B414F19D26F600056334B /* CommunityServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommunityServiceCell.xib; sourceTree = "<group>"; };
+		046B415219D26FE50056334B /* ServiceDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceDetailView.xib; sourceTree = "<group>"; };
+		046B415319D26FE50056334B /* ServiceDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDetailView.h; sourceTree = "<group>"; };
+		046B415419D26FE50056334B /* ServiceDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDetailView.m; sourceTree = "<group>"; };
+		046B415719D272A80056334B /* CommunityServiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommunityServiceView.xib; sourceTree = "<group>"; };
+		046B415919D273100056334B /* CommunityServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityServiceView.h; sourceTree = "<group>"; };
+		046B415A19D2792D0056334B /* CommService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommService.h; sourceTree = "<group>"; };
+		046B415B19D2792D0056334B /* CommService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommService.m; sourceTree = "<group>"; };
 		140D56EE19D14B0400C8C067 /* BBSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSTableView.h; sourceTree = "<group>"; };
 		140D56EF19D14B0400C8C067 /* BBSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSTableView.m; sourceTree = "<group>"; };
 		140D56F019D14B0400C8C067 /* BBSTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSTableView.xib; sourceTree = "<group>"; };
@@ -1534,6 +1557,7 @@
 				1438275B19C5F0200089CDCF /* Security.framework in Frameworks */,
 				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				14382CD519C5F4DD0089CDCF /* SinaWeiboConnection.framework in Frameworks */,
+				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				1438275919C5F0180089CDCF /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1768,6 +1792,15 @@
 				143827D819C5F15C0089CDCF /* ArticleDetailView.h */,
 				143827D919C5F15C0089CDCF /* ArticleDetailView.m */,
 				143827DA19C5F15C0089CDCF /* ArticleDetailView.xib */,
+				046B415919D273100056334B /* CommunityServiceView.h */,
+				046B414A19D26ED70056334B /* CommunityServiceView.m */,
+				046B415719D272A80056334B /* CommunityServiceView.xib */,
+				046B414E19D26F600056334B /* CommunityServiceCell.h */,
+				046B414D19D26F600056334B /* CommunityServiceCell.m */,
+				046B414F19D26F600056334B /* CommunityServiceCell.xib */,
+				046B415319D26FE50056334B /* ServiceDetailView.h */,
+				046B415419D26FE50056334B /* ServiceDetailView.m */,
+				046B415219D26FE50056334B /* ServiceDetailView.xib */,
 			);
 			name = StewardPage;
 			sourceTree = "<group>";
@@ -2207,10 +2240,14 @@
 				14382AA919C5F20A0089CDCF /* Citys.m */,
 				14382AAA19C5F20A0089CDCF /* CityInfo.h */,
 				14382AAB19C5F20A0089CDCF /* CityInfo.m */,
+				046B415A19D2792D0056334B /* CommService.h */,
+				046B415B19D2792D0056334B /* CommService.m */,
 				14382AAC19C5F20A0089CDCF /* BBSModel.h */,
 				14382AAD19C5F20A0089CDCF /* BBSModel.m */,
 				14382AAE19C5F20A0089CDCF /* BBSReplyModel.h */,
 				14382AAF19C5F20A0089CDCF /* BBSReplyModel.m */,
+				043EBCAD19D2A29D00F7CEE7 /* CommServiceInfo.h */,
+				043EBCAE19D2A29D00F7CEE7 /* CommServiceInfo.m */,
 				14382A5C19C5F1E70089CDCF /* AreaModel */,
 				14382A5B19C5F1D70089CDCF /* CommunityModel */,
 			);
@@ -3149,6 +3186,7 @@
 				141C462319CB069B0035322A /* VolunteerView.xib in Resources */,
 				143829ED19C5F1B20089CDCF /* lm_yongping@2x.png in Resources */,
 				143828A219C5F1740089CDCF /* BBSReplyView.xib in Resources */,
+				046B415819D272A80056334B /* CommunityServiceView.xib in Resources */,
 				143828FC19C5F1A00089CDCF /* LoginView.xib in Resources */,
 				143829FB19C5F1B20089CDCF /* subtle_day_special@2x.png in Resources */,
 				141C462F19CB0C510035322A /* nopic1@2x.png in Resources */,
@@ -3176,6 +3214,7 @@
 				143829F519C5F1B20089CDCF /* detail_hotline@2x.png in Resources */,
 				14382A5219C5F1B20089CDCF /* main_topimage.png in Resources */,
 				14382A1719C5F1B20089CDCF /* repairspic@2x.png in Resources */,
+				046B415119D26F600056334B /* CommunityServiceCell.xib in Resources */,
 				1438280419C5F15C0089CDCF /* MyInBoxView.xib in Resources */,
 				143829FE19C5F1B20089CDCF /* head_share@2x.png in Resources */,
 				14382A1E19C5F1B20089CDCF /* goods_btn_bg@2x.png in Resources */,
@@ -3244,6 +3283,7 @@
 				14382A4F19C5F1B20089CDCF /* mainlogo@2x.png in Resources */,
 				143827F019C5F15C0089CDCF /* RepairsItemView.xib in Resources */,
 				1438287019C5F1740089CDCF /* ConvOrderView.xib in Resources */,
+				046B414219D25EA60056334B /* wuye_service.png in Resources */,
 				143829B719C5F1B20089CDCF /* activity_btn_t@2x.png in Resources */,
 				1438289419C5F1740089CDCF /* ShoppingCartView.xib in Resources */,
 				141C463419CB0CBF0035322A /* ChangPWDView.xib in Resources */,
@@ -3286,6 +3326,7 @@
 				1438289019C5F1740089CDCF /* GoodsDetailView.xib in Resources */,
 				143828D119C5F18F0089CDCF /* VolnCell.xib in Resources */,
 				143829F419C5F1B20089CDCF /* detail_join@2x.png in Resources */,
+				046B415519D26FE50056334B /* ServiceDetailView.xib in Resources */,
 				14382A0919C5F1B20089CDCF /* life_btn_bg@2x.png in Resources */,
 				14382A4819C5F1B20089CDCF /* top_bg7@2x.png in Resources */,
 				143827E419C5F15C0089CDCF /* FeeHistoryView.xib in Resources */,
@@ -3377,6 +3418,7 @@
 				14382C7519C5F4AB0089CDCF /* PSTCollectionViewController.m in Sources */,
 				14382AE019C5F2180089CDCF /* DataSingleton.m in Sources */,
 				1438280719C5F15C0089CDCF /* KuaiDi100View.m in Sources */,
+				046B415019D26F600056334B /* CommunityServiceCell.m in Sources */,
 				1438288119C5F1740089CDCF /* BusinessView.m in Sources */,
 				14382C8A19C5F4AB0089CDCF /* SDWebImagePrefetcher.m in Sources */,
 				14382ACC19C5F20A0089CDCF /* CityInfo.m in Sources */,
@@ -3400,6 +3442,7 @@
 				14382C8219C5F4AB0089CDCF /* NSData+GIF.m in Sources */,
 				14382B6719C5F2AC0089CDCF /* AlixPayResult.m in Sources */,
 				14382AB219C5F20A0089CDCF /* User.m in Sources */,
+				046B414C19D26ED70056334B /* CommunityServiceView.m in Sources */,
 				140D56F619D14B0400C8C067 /* BBSTableCell.m in Sources */,
 				14382B8C19C5F3410089CDCF /* AFJSONRequestOperation.m in Sources */,
 				14382CA619C5F4C80089CDCF /* NSObject+RMArchivable.m in Sources */,
@@ -3541,12 +3584,14 @@
 				14382C8519C5F4AB0089CDCF /* SDWebImageCompat.m in Sources */,
 				1438288519C5F1740089CDCF /* BusinessCell.m in Sources */,
 				143827E719C5F15C0089CDCF /* RepairsFrameView.m in Sources */,
+				043EBCAF19D2A29D00F7CEE7 /* CommServiceInfo.m in Sources */,
 				14382CA719C5F4C80089CDCF /* NSObject+RMCopyable.m in Sources */,
 				1438288719C5F1740089CDCF /* BusinessCateCell.m in Sources */,
 				14382C8E19C5F4AB0089CDCF /* UIImage+WebP.m in Sources */,
 				1438289319C5F1740089CDCF /* ShoppingCartView.m in Sources */,
 				14382BC919C5F3B40089CDCF /* ImgRecord.m in Sources */,
 				14382C0119C5F48D0089CDCF /* KxMenu.m in Sources */,
+				046B415619D26FE50056334B /* ServiceDetailView.m in Sources */,
 				14382C0F19C5F4960089CDCF /* FMDatabaseAdditions.m in Sources */,
 				14382C7B19C5F4AB0089CDCF /* PSTGridLayoutInfo.m in Sources */,
 				1438287719C5F1740089CDCF /* CommunityCell.m in Sources */,
@@ -3555,6 +3600,7 @@
 				143827FF19C5F15C0089CDCF /* MySendExpressView.m in Sources */,
 				14382B6C19C5F2AC0089CDCF /* SBJsonParser.m in Sources */,
 				14382AB619C5F20A0089CDCF /* RepairsCate.m in Sources */,
+				046B415C19D2792D0056334B /* CommService.m in Sources */,
 				143827F919C5F15C0089CDCF /* NoticeTableCell.m in Sources */,
 				14382C8F19C5F4AB0089CDCF /* UIImageView+WebCache.m in Sources */,
 				143827EF19C5F15C0089CDCF /* RepairsItemView.m in Sources */,
@@ -3718,6 +3764,8 @@
 					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
 					Framework,
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuJing/QuJing-Prefix.pch";
@@ -3763,6 +3811,8 @@
 					"$(PROJECT_DIR)/QuJing/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/QuJing/ShareSDK",
 					"$(PROJECT_DIR)/QuJing/ShareSDK/UI",
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
 					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",

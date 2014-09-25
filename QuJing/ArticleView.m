@@ -8,7 +8,7 @@
 
 #import "ArticleView.h"
 
-@interface ArticleView ()
+@interface ArticleView () <UIAlertViewDelegate>
 
 @end
 
@@ -49,6 +49,17 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    UserModel *usermodel = [UserModel Instance];
+    if ([[usermodel getUserValueForKey:@"house_number"] isEqualToString:@""]) {
+        
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提醒"
+                                                     message:@"您的个人信息不完善，暂未能查看居委会通知，请完善个人信息！"
+                                                    delegate:self
+                                           cancelButtonTitle:nil
+                                           otherButtonTitles:@"确定", nil];
+        [av show];
+    }
+    
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     
     self.tableView.delegate = self;
@@ -56,6 +67,15 @@
     
     [self initMainADV];
     [self reload];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        UserInfoView *userinfoView = [[UserInfoView alloc] init];
+        userinfoView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userinfoView animated:YES];
+    }
 }
 
 - (void)initMainADV
