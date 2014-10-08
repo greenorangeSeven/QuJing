@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString *latitude;
 @property (nonatomic, retain) NSString *summary;
 @property (nonatomic, retain) NSString *content;
+@property (nonatomic, retain) NSString *star;
 @property int distance;
 
 @end

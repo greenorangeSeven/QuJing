@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		043EBCAF19D2A29D00F7CEE7 /* CommServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EBCAE19D2A29D00F7CEE7 /* CommServiceInfo.m */; };
-		046B414219D25EA60056334B /* wuye_service.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B414019D25EA60056334B /* wuye_service.png */; };
 		046B414C19D26ED70056334B /* CommunityServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B414A19D26ED70056334B /* CommunityServiceView.m */; };
 		046B415019D26F600056334B /* CommunityServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B414D19D26F600056334B /* CommunityServiceCell.m */; };
 		046B415119D26F600056334B /* CommunityServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046B414F19D26F600056334B /* CommunityServiceCell.xib */; };
@@ -588,7 +587,10 @@
 		148652B019CA8AD4000B3678 /* mainwynew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148652A819CA8AD4000B3678 /* mainwynew@2x.png */; };
 		148652B419CAC49C000B3678 /* LawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148652B219CAC49C000B3678 /* LawView.m */; };
 		148652B519CAC49C000B3678 /* LawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148652B319CAC49C000B3678 /* LawView.xib */; };
-		14AEAF4819D4006D00A378B9 /* wuye_service.png in Resources */ = {isa = PBXBuildFile; fileRef = 14AEAF4719D4006D00A378B9 /* wuye_service.png */; };
+		14AEAF4819D4006D00A378B9 /* wuye_service@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14AEAF4719D4006D00A378B9 /* wuye_service@2x.png */; };
+		14B2EC8C19D456AA0034DA8C /* CommercialReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B2EC8B19D456AA0034DA8C /* CommercialReply.m */; };
+		14B2EC9019D45A5F0034DA8C /* CommunityReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B2EC8E19D45A5F0034DA8C /* CommunityReplyCell.m */; };
+		14B2EC9119D45A5F0034DA8C /* CommunityReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B2EC8F19D45A5F0034DA8C /* CommunityReplyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -604,7 +606,6 @@
 /* Begin PBXFileReference section */
 		043EBCAD19D2A29D00F7CEE7 /* CommServiceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommServiceInfo.h; sourceTree = "<group>"; };
 		043EBCAE19D2A29D00F7CEE7 /* CommServiceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommServiceInfo.m; sourceTree = "<group>"; };
-		046B414019D25EA60056334B /* wuye_service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wuye_service.png; sourceTree = "<group>"; };
 		046B414A19D26ED70056334B /* CommunityServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityServiceView.m; sourceTree = "<group>"; };
 		046B414D19D26F600056334B /* CommunityServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityServiceCell.m; sourceTree = "<group>"; };
 		046B414E19D26F600056334B /* CommunityServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityServiceCell.h; sourceTree = "<group>"; };
@@ -1506,7 +1507,12 @@
 		148652B119CAC49C000B3678 /* LawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LawView.h; sourceTree = "<group>"; };
 		148652B219CAC49C000B3678 /* LawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LawView.m; sourceTree = "<group>"; };
 		148652B319CAC49C000B3678 /* LawView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LawView.xib; sourceTree = "<group>"; };
-		14AEAF4719D4006D00A378B9 /* wuye_service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wuye_service.png; sourceTree = "<group>"; };
+		14AEAF4719D4006D00A378B9 /* wuye_service@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wuye_service@2x.png"; sourceTree = "<group>"; };
+		14B2EC8A19D456AA0034DA8C /* CommercialReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommercialReply.h; sourceTree = "<group>"; };
+		14B2EC8B19D456AA0034DA8C /* CommercialReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommercialReply.m; sourceTree = "<group>"; };
+		14B2EC8D19D45A5E0034DA8C /* CommunityReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityReplyCell.h; sourceTree = "<group>"; };
+		14B2EC8E19D45A5F0034DA8C /* CommunityReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityReplyCell.m; sourceTree = "<group>"; };
+		14B2EC8F19D45A5F0034DA8C /* CommunityReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommunityReplyCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1556,8 +1562,8 @@
 				14382CD619C5F4DD0089CDCF /* TencentWeiboConnection.framework in Frameworks */,
 				1438275D19C5F0290089CDCF /* libz.1.2.5.dylib in Frameworks */,
 				14382B3319C5F2690089CDCF /* libbaidumapapi.a in Frameworks */,
-				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				1438275B19C5F0200089CDCF /* Security.framework in Frameworks */,
+				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				14382CD519C5F4DD0089CDCF /* SinaWeiboConnection.framework in Frameworks */,
 				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				1438275919C5F0180089CDCF /* libsqlite3.dylib in Frameworks */,
@@ -1837,6 +1843,9 @@
 				1438282719C5F1740089CDCF /* CommunityDetailView.h */,
 				1438282819C5F1740089CDCF /* CommunityDetailView.m */,
 				1438282919C5F1740089CDCF /* CommunityDetailView.xib */,
+				14B2EC8D19D45A5E0034DA8C /* CommunityReplyCell.h */,
+				14B2EC8E19D45A5F0034DA8C /* CommunityReplyCell.m */,
+				14B2EC8F19D45A5F0034DA8C /* CommunityReplyCell.xib */,
 				1438282A19C5F1740089CDCF /* CBusinessPublishView.h */,
 				1438282B19C5F1740089CDCF /* CBusinessPublishView.m */,
 				1438282C19C5F1740089CDCF /* CBusinessPublishView.xib */,
@@ -1990,7 +1999,7 @@
 		1438275219C5EF7E0089CDCF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				14AEAF4719D4006D00A378B9 /* wuye_service.png */,
+				14AEAF4719D4006D00A378B9 /* wuye_service@2x.png */,
 				1447B15519D2C07500492D55 /* alipayBtn@2x.png */,
 				1447B15619D2C07500492D55 /* alipayFeeBtn@2x.png */,
 				141C463519CB0E3D0035322A /* head_shopcar@2x.png */,
@@ -2239,6 +2248,8 @@
 				14382AA519C5F20A0089CDCF /* Article.m */,
 				14382AA619C5F20A0089CDCF /* Commercial.h */,
 				14382AA719C5F20A0089CDCF /* Commercial.m */,
+				14B2EC8A19D456AA0034DA8C /* CommercialReply.h */,
+				14B2EC8B19D456AA0034DA8C /* CommercialReply.m */,
 				14382AA819C5F20A0089CDCF /* Citys.h */,
 				14382AA919C5F20A0089CDCF /* Citys.m */,
 				14382AAA19C5F20A0089CDCF /* CityInfo.h */,
@@ -3166,6 +3177,7 @@
 				143829F319C5F1B20089CDCF /* detail_praise@2x.png in Resources */,
 				141C463619CB0E3D0035322A /* head_shopcar@2x.png in Resources */,
 				14382A0519C5F1B20089CDCF /* onlineservice@2x.png in Resources */,
+				14B2EC9119D45A5F0034DA8C /* CommunityReplyCell.xib in Resources */,
 				14382A3819C5F1B20089CDCF /* userface.png in Resources */,
 				148652AF19CA8AD4000B3678 /* mainyznew@2x.png in Resources */,
 				143829E519C5F1B20089CDCF /* business_bg@2x.png in Resources */,
@@ -3286,7 +3298,6 @@
 				14382A4F19C5F1B20089CDCF /* mainlogo@2x.png in Resources */,
 				143827F019C5F15C0089CDCF /* RepairsItemView.xib in Resources */,
 				1438287019C5F1740089CDCF /* ConvOrderView.xib in Resources */,
-				046B414219D25EA60056334B /* wuye_service.png in Resources */,
 				143829B719C5F1B20089CDCF /* activity_btn_t@2x.png in Resources */,
 				1438289419C5F1740089CDCF /* ShoppingCartView.xib in Resources */,
 				141C463419CB0CBF0035322A /* ChangPWDView.xib in Resources */,
@@ -3343,7 +3354,7 @@
 				14382A0319C5F1B20089CDCF /* subtleprice@2x.png in Resources */,
 				143829EE19C5F1B20089CDCF /* goods_add@2x.png in Resources */,
 				14382A3D19C5F1B20089CDCF /* setting_login@2x.png in Resources */,
-				14AEAF4819D4006D00A378B9 /* wuye_service.png in Resources */,
+				14AEAF4819D4006D00A378B9 /* wuye_service@2x.png in Resources */,
 				1438278C19C5F1500089CDCF /* ADVDetailView.xib in Resources */,
 				143827E619C5F15C0089CDCF /* FeeHistoryCell.xib in Resources */,
 				143829D419C5F1B20089CDCF /* cm_community_temp@2x.png in Resources */,
@@ -3415,6 +3426,7 @@
 				143827F719C5F15C0089CDCF /* NewsTableView.m in Sources */,
 				14382AB719C5F20A0089CDCF /* RepairsList.m in Sources */,
 				1438288F19C5F1740089CDCF /* GoodsDetailView.m in Sources */,
+				14B2EC9019D45A5F0034DA8C /* CommunityReplyCell.m in Sources */,
 				14382C9319C5F4AB0089CDCF /* MWPhoto.m in Sources */,
 				14382AB819C5F20A0089CDCF /* RepairsItem.m in Sources */,
 				143827E319C5F15C0089CDCF /* FeeHistoryView.m in Sources */,
@@ -3491,6 +3503,7 @@
 				1438289B19C5F1740089CDCF /* ProjectCollectionCell.m in Sources */,
 				1438288D19C5F1740089CDCF /* BusinessGoodCell.m in Sources */,
 				14382AE219C5F2180089CDCF /* ImageStore.m in Sources */,
+				14B2EC8C19D456AA0034DA8C /* CommercialReply.m in Sources */,
 				143828C619C5F18F0089CDCF /* CityPageView.m in Sources */,
 				14382AC819C5F20A0089CDCF /* ResponseCode.m in Sources */,
 				14382A6519C5F1F40089CDCF /* HouseModel.m in Sources */,
@@ -3772,6 +3785,12 @@
 					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
 					Framework,
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuJing/QuJing-Prefix.pch";
@@ -3817,6 +3836,12 @@
 					"$(PROJECT_DIR)/QuJing/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/QuJing/ShareSDK",
 					"$(PROJECT_DIR)/QuJing/ShareSDK/UI",
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
+					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
 					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",

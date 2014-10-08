@@ -64,12 +64,12 @@
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     allCount = 0;
     [_refreshHeaderView refreshLastUpdatedDate];
-    self.view.backgroundColor = [Tool getBackgroundColor];
+//    self.view.backgroundColor = [Tool getBackgroundColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.tableView.backgroundColor = [Tool getBackgroundColor];
+//    self.tableView.backgroundColor = [Tool getBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -365,7 +365,7 @@
 {
     if (indexPath.row < serviceArray.count)
     {
-        return 91;
+        return 76;
     }
     else
     {
@@ -388,11 +388,18 @@
     {
         CommService *comm = [serviceArray objectAtIndex:[indexPath row]];
         if (comm) {
-            ServiceDetailView *serviceDetailView = [[ServiceDetailView alloc] init];
-            serviceDetailView.comm = comm;
-            [self.navigationController pushViewController:serviceDetailView animated:YES];
+            [self telAction:comm.summary];
         }
     }
+}
+
+- (void)telAction:(NSString *)phoneNum{
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNum]];
+    if (!phoneCallWebView)
+    {
+        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    }
+    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
 @end

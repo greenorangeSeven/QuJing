@@ -88,6 +88,74 @@ static UserModel * instance = nil;
     return [AESCrypt decrypt:temp password:@"pwd"];
 }
 
+-(void)saveDefaultPartner:(NSString *)defaultPartner
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user removeObjectForKey:@"DEFAULT_PARTNER"];
+    defaultPartner = [AESCrypt encrypt:defaultPartner password:@"alipay"];
+    [user setObject:defaultPartner forKey:@"DEFAULT_PARTNER"];
+    
+    [user synchronize];
+}
+
+-(NSString *)getDefaultPartner
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString * temp = [user objectForKey:@"DEFAULT_PARTNER"];
+    return [AESCrypt decrypt:temp password:@"alipay"];
+}
+
+-(void)saveSeller:(NSString *)seller
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user removeObjectForKey:@"DEFAULT_SELLER"];
+    seller = [AESCrypt encrypt:seller password:@"alipay"];
+    [user setObject:seller forKey:@"DEFAULT_SELLER"];
+    
+    [user synchronize];
+}
+
+-(NSString *)getSeller
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString * temp = [user objectForKey:@"DEFAULT_SELLER"];
+    return [AESCrypt decrypt:temp password:@"alipay"];
+}
+
+-(void)savePrivate:(NSString *)privateKey
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user removeObjectForKey:@"PRIVATE"];
+    privateKey = [AESCrypt encrypt:privateKey password:@"alipay"];
+    [user setObject:privateKey forKey:@"PRIVATE"];
+    
+    [user synchronize];
+}
+
+-(NSString *)getPrivate
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString * temp = [user objectForKey:@"PRIVATE"];
+    return [AESCrypt decrypt:temp password:@"alipay"];
+}
+
+-(void)savePublic:(NSString *)publicKey
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user removeObjectForKey:@"PUBLIC"];
+    publicKey = [AESCrypt encrypt:publicKey password:@"alipay"];
+    [user setObject:publicKey forKey:@"PUBLIC"];
+    
+    [user synchronize];
+}
+
+-(NSString *)getPublic
+{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString * temp = [user objectForKey:@"PUBLIC"];
+    return [AESCrypt decrypt:temp password:@"alipay"];
+}
+
 -(NSString *)getUserValueForKey:(NSString *)key
 {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];

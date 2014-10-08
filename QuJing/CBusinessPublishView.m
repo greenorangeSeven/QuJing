@@ -7,14 +7,13 @@
 //
 
 #import "CBusinessPublishView.h"
-#import "VPImageCropperViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "EGOImageView.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
-@interface CBusinessPublishView ()<UIActionSheetDelegate, UIPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
+@interface CBusinessPublishView ()<UIActionSheetDelegate, UIPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     UIImage *picimage;
 }
@@ -151,7 +150,6 @@
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -191,17 +189,17 @@
 }
 
 #pragma mark VPImageCropperDelegate
-- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
-    [cropperViewController dismissViewControllerAnimated:YES completion:^{
-        [self.selectPhoneBtn setImage:editedImage forState:UIControlStateNormal];
-        picimage = editedImage;
-    }];
-}
-
-- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
-    [cropperViewController dismissViewControllerAnimated:YES completion:^{
-    }];
-}
+//- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
+//    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+//        [self.selectPhoneBtn setImage:editedImage forState:UIControlStateNormal];
+//        picimage = editedImage;
+//    }];
+//}
+//
+//- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
+//    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+//    }];
+//}
 
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -245,13 +243,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        portraitImg = [self imageByScalingToMaxSize:portraitImg];
-        // 裁剪
-        VPImageCropperViewController *imgEditorVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width) limitScaleRatio:3.0];
-        imgEditorVC.delegate = self;
-        [self presentViewController:imgEditorVC animated:YES completion:^{
-            // TO DO
-        }];
+        picimage = [self imageByScalingToMaxSize:portraitImg];
+        [self.selectPhoneBtn setImage:picimage forState:UIControlStateNormal];
     }];
 }
 

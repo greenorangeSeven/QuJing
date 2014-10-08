@@ -22,6 +22,15 @@
 
 -(NSString *)getPwd;
 
+-(void)saveDefaultPartner:(NSString *)defaultPartner;
+-(NSString *)getDefaultPartner;
+-(void)saveSeller:(NSString *)seller;
+-(NSString *)getSeller;
+-(void)savePrivate:(NSString *)privateKey;
+-(NSString *)getPrivate;
+-(void)savePublic:(NSString *)publicKey;
+-(NSString *)getPublic;
+
 -(NSString *)getUserValueForKey:(NSString *)key;
 -(void)removeUserValueForKey:(NSString *)key;
 -(void)saveValue:(NSString *)value ForKey:(NSString *)key;

@@ -31,7 +31,6 @@
     UIWebView *phoneCallWebView;
     
     MBProgressHUD *hud;
-    
 }
 
 //异步加载图片专用

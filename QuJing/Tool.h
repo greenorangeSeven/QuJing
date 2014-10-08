@@ -45,6 +45,7 @@
 #import "MyGoods.h"
 #import "ResponseCode.h"
 #import "Commercial.h"
+#import "CommercialReply.h"
 #import "Citys.h"
 #import "CityInfo.h"
 #import "BBSModel.h"
@@ -167,5 +168,6 @@
 + (NSMutableArray *)readJsonStrToCitys:(NSString *)str;
 + (CityInfo *)readJsonStrToCityInfo:(NSString *)str;
 + (NSMutableArray *)readJsonStrToBBSArray:(NSString *)str;
++ (NSMutableArray *)readJsonStrToCommercialReply:(NSString *)str;
 
 @end

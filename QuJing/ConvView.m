@@ -238,6 +238,15 @@
     }
     [Tool roundView:cell.cellbackgroudView andCornerRadius:3.0];
     
+    //星级评价
+    AMRatingControl *gradeControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(0, 0)
+                                                                   emptyColor:[Tool getColorForGreen]
+                                                                   solidColor:[Tool getColorForGreen]
+                                                                 andMaxRating:5  andStarSize:15 andStarWidthAndHeight:15];
+    
+    [gradeControl setRating:[shop.star intValue]];
+    [cell.starLb addSubview:gradeControl];
+    
     return cell;
 }
 

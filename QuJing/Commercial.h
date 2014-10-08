@@ -21,6 +21,8 @@
 @property (nonatomic, retain) NSString *comm_name;
 @property (nonatomic, retain) NSString *hits;
 
+@property int contentHeight;
+
 @property (retain,nonatomic) UIImage * imgData;
 @property (nonatomic, retain) NSString *timeStr;
 

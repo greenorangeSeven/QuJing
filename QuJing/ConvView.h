@@ -15,6 +15,7 @@
 #import "ConvCell.h"
 #import "ConvOrderView.h"
 #import "BusniessSearchView.h"
+#import "AMRatingControl.h"
 
 @interface ConvView : UIViewController<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {

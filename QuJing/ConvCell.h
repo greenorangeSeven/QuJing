@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *adressLb;
 @property (weak, nonatomic) IBOutlet UILabel *telLb;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLb;
+@property (weak, nonatomic) IBOutlet UILabel *starLb;
 
 @end

@@ -952,6 +952,9 @@
         return nil;
     }
     NSMutableArray *commercialArray = [RMMapper mutableArrayOfClass:[Commercial class] fromArrayOfDictionary:commercialJsonArray];
+    for (Commercial *com in commercialArray) {
+        com.contentHeight = [self getTextHeight:300 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:12] andText:com.content];
+    }
     return commercialArray;
 }
 
@@ -1014,6 +1017,35 @@
         o.replyHeight = [self getTextHeight:253 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:12] andText:ms];
     }
     return bbsArray;
+}
+
++ (NSMutableArray *)readJsonStrToCommercialReply:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( json == nil ) {
+        return nil;
+    }
+    NSArray *jsonArray = [json objectForKey:@"reply_list"];
+    NSMutableArray *replyArray = [RMMapper mutableArrayOfClass:[CommercialReply class] fromArrayOfDictionary:jsonArray];
+    for (CommercialReply *comm in replyArray)
+    {
+        
+        NSString *rname = @"匿名用户";
+        if ([comm.nickname isEqualToString:@""] == NO)
+        {
+            rname = [NSString stringWithFormat:@"%@", comm.nickname];
+        }
+        else if ([comm.name isEqualToString:@""] == NO)
+        {
+            rname = [NSString stringWithFormat:@"%@", comm.name];
+        }
+        comm.nickname = rname;
+        comm.timeStr = [Tool intervalSinceNow:[Tool TimestampToDateStr:comm.reply_time andFormatterStr:@"yyyy-MM-dd HH:mm:ss"]];
+        comm.contentHeight = [self getTextHeight:300 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:12] andText:comm.reply_content];
+    }
+    return replyArray;
 }
 
 @end

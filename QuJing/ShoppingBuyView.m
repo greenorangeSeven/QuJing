@@ -261,9 +261,12 @@
             pro.subject = @"订单付款";
             pro.body = @"订单在线付款";
             pro.price = 0.01;
-            pro.partnerID = [usermodel getUserValueForKey:@"DEFAULT_PARTNER"];
-            pro.partnerPrivKey = [usermodel getUserValueForKey:@"PRIVATE"];
-            pro.sellerID = [usermodel getUserValueForKey:@"DEFAULT_SELLER"];
+//            pro.partnerID = [usermodel getUserValueForKey:@"DEFAULT_PARTNER"];
+//            pro.partnerPrivKey = [usermodel getUserValueForKey:@"PRIVATE"];
+//            pro.sellerID = [usermodel getUserValueForKey:@"DEFAULT_SELLER"];
+            pro.partnerID = [usermodel getDefaultPartner];
+            pro.partnerPrivKey = [usermodel getPrivate];
+            pro.sellerID = [usermodel getSeller];
             
             [AlipayUtils doPay:pro NotifyURL:api_goods_notify AndScheme:@"QuJingAlipay" seletor:nil target:nil];
         }

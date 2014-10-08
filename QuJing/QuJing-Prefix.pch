@@ -82,6 +82,7 @@
 #define api_commerciallist @"/get_business_info_list"
 #define api_commercialinfo @"/get_bussiness_info"
 #define api_delcommercial @"/del_bussiness_info"
+#define api_replycommercial @"/reply_business_info"
 #define api_bbslist @"/bbs"
 #define api_replybbs @"/reply_subject"
 #define api_addbbs @"/add_bbs_subject"
@@ -162,6 +163,7 @@
 #define ArticleCellIdentifier @"ArticleCellIdentifier"
 #define CommunityCellIdentifier @"CommunityCellIdentifier"
 #define ProjectCollectionCellIdentifier @"ProjectCollectionCellIdentifier"
+#define CommunityReplyCellIdentifier @"CommunityReplyCellIdentifier"
 
 #define createshoppingcart @"create table shoppingcart (id integer primary key autoincrement not null,goodid text,title text,thumb text,price text,store_name text,business_id text,number int,user_id text)"
 

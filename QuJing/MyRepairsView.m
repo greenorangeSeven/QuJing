@@ -130,8 +130,8 @@
     if ([myRepair.rate intValue] > 0) {
         //星级评价
         AMRatingControl *gradeControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(0, 0)
-                                                                       emptyColor:[UIColor colorWithRed:245.0/255 green:130.0/255 blue:33.0/255 alpha:1.0]
-                                                                       solidColor:[UIColor colorWithRed:245.0/255 green:130.0/255 blue:33.0/255 alpha:1.0]
+                                                                       emptyColor:[Tool getColorForGreen]
+                                                                       solidColor:[Tool getColorForGreen]
                                                                      andMaxRating:5  andStarSize:15 andStarWidthAndHeight:15];
         
         [gradeControl setRating:[myRepair.rate intValue]];

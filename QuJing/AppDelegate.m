@@ -83,7 +83,7 @@ BMKMapManager* _mapManager;
     
     // 要使用百度地图，请先启动BaiduMapManager
 	_mapManager = [[BMKMapManager alloc]init];
-	BOOL ret = [_mapManager start:@"FqrlznfiCzEg2FIkzK22lzEM" generalDelegate:self];
+	BOOL ret = [_mapManager start:@"C2rrk96MnTYQZxa67UPz2CjA" generalDelegate:self];
 	if (!ret) {
 		NSLog(@"manager start failed!");
 	}
@@ -205,10 +205,14 @@ BMKMapManager* _mapManager;
     if (alipay) {
         //保存支付宝信息
         UserModel *userModel = [UserModel Instance];
-        [userModel saveValue:alipay.DEFAULT_PARTNER ForKey:@"DEFAULT_PARTNER"];
-        [userModel saveValue:alipay.DEFAULT_SELLER ForKey:@"DEFAULT_SELLER"];
-        [userModel saveValue:alipay.PRIVATE ForKey:@"PRIVATE"];
-        [userModel saveValue:alipay.PUBLIC ForKey:@"PUBLIC"];
+//        [userModel saveValue:alipay.DEFAULT_PARTNER ForKey:@"DEFAULT_PARTNER"];
+//        [userModel saveValue:alipay.DEFAULT_SELLER ForKey:@"DEFAULT_SELLER"];
+//        [userModel saveValue:alipay.PRIVATE ForKey:@"PRIVATE"];
+//        [userModel saveValue:alipay.PUBLIC ForKey:@"PUBLIC"];
+        [userModel saveDefaultPartner:alipay.DEFAULT_PARTNER];
+        [userModel saveSeller:alipay.DEFAULT_SELLER];
+        [userModel savePrivate:alipay.PRIVATE];
+        [userModel savePublic:alipay.PUBLIC];
     }
 }
 
