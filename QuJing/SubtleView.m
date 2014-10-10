@@ -8,8 +8,9 @@
 
 #import "SubtleView.h"
 #import "SubtleCell.h"
+#import "Coupons.h"
 
-@interface SubtleView () <UITableViewDataSource,UITableViewDelegate>
+@interface SubtleView ()
 
 @end
 
@@ -46,39 +47,98 @@
     [super viewDidLoad];
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
-    [self initRecommend];
+    [self initCoupons];
 }
 
-- (void)initRecommend
+//- (void)initRecommend
+//{
+//    //如果有网络连接
+//    if ([UserModel Instance].isNetworkRunning) {
+//        [Tool showHUD:@"数据加载" andView:self.view andHUD:hud];
+//        NSString *url = [NSString stringWithFormat:@"%@%@?APPKey=%@", api_base_url, api_getrecommendgoods, appkey];
+//        [[AFOSCClient sharedClient]getPath:url parameters:Nil
+//                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                                       @try {
+//                                           goods = [Tool readJsonStrToGoodsArray:operation.responseString];
+//                                           int length = [goods count];
+//                                           NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
+//                                           if (length > 1)
+//                                           {
+//                                               Goods *good = [goods objectAtIndex:length-1];
+//                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+//                                               [itemArray addObject:item];
+//                                           }
+//                                           for (int i = 0; i < length; i++)
+//                                           {
+//                                               Goods *good = [goods objectAtIndex:i];
+//                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+//                                               [itemArray addObject:item];
+//                                               
+//                                           }
+//                                           //添加第一张图 用于循环
+//                                           if (length >1)
+//                                           {
+//                                               Goods *good = [goods objectAtIndex:0];
+//                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+//                                               [itemArray addObject:item];
+//                                           }
+//                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 246) delegate:self imageItems:itemArray isAuto:NO];
+//                                           [bannerView scrollToIndex:0];
+//                                           [self.recommendIv addSubview:bannerView];
+//                                       }
+//                                       @catch (NSException *exception) {
+//                                           [NdUncaughtExceptionHandler TakeException:exception];
+//                                       }
+//                                       @finally {
+//                                           if (hud != nil) {
+//                                               [hud hide:YES];
+//                                           }
+//                                       }
+//                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                       if ([UserModel Instance].isNetworkRunning == NO) {
+//                                           return;
+//                                       }
+//                                       if ([UserModel Instance].isNetworkRunning) {
+//                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+//                                       }
+//                                   }];
+//    }
+//}
+
+- (void)initCoupons
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
         [Tool showHUD:@"数据加载" andView:self.view andHUD:hud];
-        NSString *url = [NSString stringWithFormat:@"%@%@?APPKey=%@", api_base_url, api_getrecommendgoods, appkey];
+        NSString *url = [NSString stringWithFormat:@"%@%@?APPKey=%@&bid=0&p=1", api_base_url, api_getshopscoupons, appkey];
         [[AFOSCClient sharedClient]getPath:url parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
-                                           goods = [Tool readJsonStrToGoodsArray:operation.responseString];
-                                           int length = [goods count];
+                                           coupons = [Tool readJsonStrToCouponList:operation.responseString];
+                                           if ([coupons count] >=5)
+                                           {
+                                               coupons = [coupons subarrayWithRange:NSMakeRange(0, 5)];
+                                           }
+                                           int length = [coupons count];
                                            NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
                                            if (length > 1)
                                            {
-                                               Goods *good = [goods objectAtIndex:length-1];
-                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+                                               Coupons *coupon = [coupons objectAtIndex:length-1];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
                                                [itemArray addObject:item];
                                            }
                                            for (int i = 0; i < length; i++)
                                            {
-                                               Goods *good = [goods objectAtIndex:i];
-                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+                                               Coupons *coupon = [coupons objectAtIndex:i];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
                                                [itemArray addObject:item];
                                                
                                            }
                                            //添加第一张图 用于循环
                                            if (length >1)
                                            {
-                                               Goods *good = [goods objectAtIndex:0];
-                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+                                               Coupons *coupon = [coupons objectAtIndex:0];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
                                                [itemArray addObject:item];
                                            }
                                            bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 246) delegate:self imageItems:itemArray isAuto:NO];
@@ -107,12 +167,11 @@
 //顶部图片滑动点击委托协议实现事件
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
-    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title);
-    Goods *good = (Goods *)[goods objectAtIndex:goodIndex];
-    if (good) {
-        GoodsDetailView *goodsDetail = [[GoodsDetailView alloc] init];
-        goodsDetail.good = good;
-        [self.navigationController pushViewController:goodsDetail animated:YES];
+    Coupons *coupon = [coupons objectAtIndex:goodIndex];
+    if (coupon) {
+        CouponDetailView *couponDetail = [[CouponDetailView alloc] init];
+        couponDetail.couponsId = coupon.id;
+        [self.navigationController pushViewController:couponDetail animated:YES];
     }
 }
 

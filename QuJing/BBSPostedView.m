@@ -68,6 +68,7 @@
     [request setPostValue:contentStr forKey:@"content"];
     if (picimage != nil) {
         [request addData:UIImageJPEGRepresentation(picimage, 0.75f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:@"pics"];
+        [request addData:UIImageJPEGRepresentation(picimage, 0.75f) withFileName:@"111.jpg" andContentType:@"image/jpeg" forKey:@"pics"];
     }
     request.delegate = self;
     request.tag = 11;

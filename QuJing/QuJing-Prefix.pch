@@ -71,6 +71,7 @@
 #define api_couponsinfo @"/get_shops_coupons_info"
 #define api_couponsisget @"/is_receive"
 #define api_getcoupons @"/get_coupons"
+#define api_getshopscoupons @"/get_shops_coupons"
 #define api_getrecommendgoods @"/get_recommend_goods"
 #define api_lifecate @"/get_life_cate"
 #define api_lifelist @"/get_life_list"

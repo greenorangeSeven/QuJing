@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 
-@interface CouponDetailView : UIViewController<UIWebViewDelegate,UIActionSheetDelegate>
+@interface CouponDetailView : UIViewController<UIWebViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 {
     UIWebView *phoneCallWebView;
     MBProgressHUD *hud;

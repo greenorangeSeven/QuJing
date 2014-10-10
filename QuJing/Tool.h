@@ -137,6 +137,8 @@
 + (void)pushToSettingView:(UINavigationController *)navigationController;
 + (void)pushToMyView:(UINavigationController *)navigationController;
 
++ (NSString *)flattenHTML:(NSString *)html;
+
 + (User *)readJsonStrToUser:(NSString *)str;
 + (AlipayInfo *)readJsonStrToAliPay:(NSString *)str;
 + (NSMutableArray *)readJsonStrToRegionArray:(NSString *)str;
@@ -157,6 +159,7 @@
 + (NSMutableArray *)readJsonStrToComm:(NSString *)str;
 + (Goods *)readJsonStrToGoodsInfo:(NSString *)str;
 + (Coupons *)readJsonStrToCouponDetail:(NSString *)str;
++ (NSMutableArray *)readJsonStrToCouponList:(NSString *)str;
 + (NSMutableArray *)readJsonStrToGoodsArray:(NSString *)str;
 + (Shop *)readJsonStrToShopInfo:(NSString *)str;
 + (CommServiceInfo *)readJsonStrToCommServiceInfo:(NSString *)str;

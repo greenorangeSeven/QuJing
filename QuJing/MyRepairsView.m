@@ -65,7 +65,7 @@
                                            [myRepairsData removeAllObjects];
                                            noDataLabel.hidden = YES;
                                            myRepairsData = [Tool readJsonStrToMyRepairs:operation.responseString];
-                                           if (myRepairsData == nil || [myRepairsData count] > 0)
+                                           if (myRepairsData == nil || [myRepairsData count] == 0)
                                            {
                                                noDataLabel.hidden = NO;
                                            }

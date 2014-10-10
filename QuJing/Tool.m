@@ -419,15 +419,32 @@
     return [NSString stringWithFormat:@"%@",roundedOunces];
 }
 
+//过滤HTML标签
++ (NSString *)flattenHTML:(NSString *)html {
+    NSScanner *theScanner;
+    NSString *text = nil;
+    theScanner = [NSScanner scannerWithString:html];
+    while ([theScanner isAtEnd] == NO) {
+        [theScanner scanUpToString:@"<" intoString:NULL] ;
+        [theScanner scanUpToString:@">" intoString:&text] ;
+        html = [html stringByReplacingOccurrencesOfString:
+                [NSString stringWithFormat:@"%@>", text]
+                                               withString:@""];
+    }
+    return html;
+}
+
 + (void)shareAction:(UIButton *)sender andShowView:(UIView *)view andContent:(NSDictionary *)shareContent {
 //    Activity *activity = [[Activity alloc] init];
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:[shareContent objectForKey:@"summary"]
+    NSString *shareStr = [Tool flattenHTML:[shareContent objectForKey:@"summary"]];
+    
+    id<ISSContent> publishContent = [ShareSDK content:shareStr
                                        defaultContent:@""
                                                 image:[ShareSDK imageWithUrl:[shareContent objectForKey:@"thumb"]]
-                                                title:[shareContent objectForKey:@"title"]
-                                                  url:@"http://www.best-world.net"
-                                          description:[shareContent objectForKey:@"summary"]
+                                                title:shareStr
+                                                  url:nil
+                                          description:shareStr
                                             mediaType:SSPublishContentMediaTypeNews];
     
     
@@ -450,27 +467,27 @@
     //                                    nil]];
     
     //自定义新浪微博分享菜单项
-    id<ISSShareActionSheetItem> sinaItem = [ShareSDK shareActionSheetItemWithTitle:[ShareSDK getClientNameWithType:ShareTypeSinaWeibo]
-                                                                              icon:[ShareSDK getClientIconWithType:ShareTypeSinaWeibo]
-                                                                      clickHandler:^{
-                                                                          [ShareSDK shareContent:publishContent
-                                                                                            type:ShareTypeSinaWeibo
-                                                                                     authOptions:nil
-                                                                                   statusBarTips:NO
-                                                                                          result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                                                                              
-                                                                                              if (state == SSPublishContentStateSuccess)
-                                                                                              {
-                                                                                                  [self showCustomHUD:@"分享成功" andView:view andImage:@"37x-Checkmark.png" andAfterDelay:1];
-                                                                                                  NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
-                                                                                              }
-                                                                                              else if (state == SSPublishContentStateFail)
-                                                                                              {
-                                                                                                  [self showCustomHUD:@"分享失败" andView:view andImage:@"37x-Failure.png" andAfterDelay:1];
-                                                                                                  NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
-                                                                                              }
-                                                                                          }];
-                                                                      }];
+//    id<ISSShareActionSheetItem> sinaItem = [ShareSDK shareActionSheetItemWithTitle:[ShareSDK getClientNameWithType:ShareTypeSinaWeibo]
+//                                                                              icon:[ShareSDK getClientIconWithType:ShareTypeSinaWeibo]
+//                                                                      clickHandler:^{
+//                                                                          [ShareSDK shareContent:publishContent
+//                                                                                            type:ShareTypeSinaWeibo
+//                                                                                     authOptions:nil
+//                                                                                   statusBarTips:NO
+//                                                                                          result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+//                                                                                              
+//                                                                                              if (state == SSPublishContentStateSuccess)
+//                                                                                              {
+//                                                                                                  [self showCustomHUD:@"分享成功" andView:view andImage:@"37x-Checkmark.png" andAfterDelay:1];
+//                                                                                                  NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+//                                                                                              }
+//                                                                                              else if (state == SSPublishContentStateFail)
+//                                                                                              {
+//                                                                                                  [self showCustomHUD:@"分享失败" andView:view andImage:@"37x-Failure.png" andAfterDelay:1];
+//                                                                                                  NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+//                                                                                              }
+//                                                                                          }];
+//                                                                      }];
     
     //自定义腾讯微博分享菜单项
     id<ISSShareActionSheetItem> tencentItem = [ShareSDK shareActionSheetItemWithTitle:[ShareSDK getClientNameWithType:ShareTypeTencentWeibo]
@@ -497,7 +514,7 @@
     
     //创建自定义分享列表
     NSArray *shareList = [ShareSDK customShareListWithType:
-                          sinaItem,
+//                          sinaItem,
                           tencentItem,
                           SHARE_TYPE_NUMBER(ShareTypeWeixiSession),
                           SHARE_TYPE_NUMBER(ShareTypeWeixiTimeline),
@@ -875,6 +892,18 @@
     }
     Coupons *detail = [RMMapper objectWithClass:[Coupons class] fromDictionary:detailDic];
     return detail;
+}
+
++ (NSMutableArray *)readJsonStrToCouponList:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *couponJsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( couponJsonArray == nil || [couponJsonArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *coupons = [RMMapper mutableArrayOfClass:[Coupons class] fromArrayOfDictionary:couponJsonArray];
+    return coupons;
 }
 
 + (NSMutableArray *)readJsonStrToGoodsArray:(NSString *)str

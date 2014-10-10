@@ -20,6 +20,7 @@
 #import "WeiboApi.h"
 #import "AlixPayResult.h"
 #import "DataVerifier.h"
+#import "BPush.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate>
 

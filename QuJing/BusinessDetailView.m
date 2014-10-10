@@ -121,36 +121,99 @@
                                                [self.collectionView reloadData];
                                            }
                                            
-                                           if (coupons == nil || [coupons count] == 0) {
-                                               coupons = businessGoods.coupons;
-                                               if (coupons != nil && [coupons count] > 0) {
-                                                   int length = [coupons count];
-                                                   NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
-                                                   if (length > 1)
-                                                   {
-                                                       Coupons *coupon = [coupons objectAtIndex:length-1];
-                                                       SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
-                                                       [itemArray addObject:item];
+                                           //特价超市顶部区域显示推荐商品，联盟商家显示优惠券
+                                           if (self.tjCatId == nil || [self.tjCatId length] == 0)
+                                           {
+                                               if (coupons == nil || [coupons count] == 0) {
+                                                   coupons = businessGoods.coupons;
+                                                   if (coupons != nil && [coupons count] > 0) {
+                                                       int length = [coupons count];
+                                                       NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
+                                                       if (length > 1)
+                                                       {
+                                                           Coupons *coupon = [coupons objectAtIndex:length-1];
+                                                           SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
+                                                           [itemArray addObject:item];
+                                                       }
+                                                       for (int i = 0; i < length; i++)
+                                                       {
+                                                           Coupons *coupon = [coupons objectAtIndex:i];
+                                                           SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
+                                                           [itemArray addObject:item];
+                                                           
+                                                       }
+                                                       //添加第一张图 用于循环
+                                                       if (length >1)
+                                                       {
+                                                           Coupons *coupon = [coupons objectAtIndex:0];
+                                                           SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
+                                                           [itemArray addObject:item];
+                                                       }
+                                                       bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 200) delegate:self imageItems:itemArray isAuto:YES];
+                                                       [bannerView scrollToIndex:0];
+                                                       [self.couponIv addSubview:bannerView];
                                                    }
-                                                   for (int i = 0; i < length; i++)
-                                                   {
-                                                       Coupons *coupon = [coupons objectAtIndex:i];
-                                                       SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
-                                                       [itemArray addObject:item];
-                                                       
-                                                   }
-                                                   //添加第一张图 用于循环
-                                                   if (length >1)
-                                                   {
-                                                       Coupons *coupon = [coupons objectAtIndex:0];
-                                                       SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:coupon.thumb tag:-1];
-                                                       [itemArray addObject:item];
-                                                   }
-                                                   bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 135) delegate:self imageItems:itemArray isAuto:YES];
-                                                   [bannerView scrollToIndex:0];
-                                                   [self.couponIv addSubview:bannerView];
                                                }
-                                           }  
+                                           }
+                                           else
+                                           {
+                                               [self initRecommend];
+                                           }
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+                                           if (hud != nil) {
+                                               [hud hide:YES];
+                                           }
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       if ([UserModel Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+                                       if ([UserModel Instance].isNetworkRunning) {
+                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                       }
+                                   }];
+    }
+}
+
+- (void)initRecommend
+{
+    //如果有网络连接
+    if ([UserModel Instance].isNetworkRunning) {
+        [Tool showHUD:@"数据加载" andView:self.view andHUD:hud];
+        NSString *url = [NSString stringWithFormat:@"%@%@?APPKey=%@", api_base_url, api_getrecommendgoods, appkey];
+        [[AFOSCClient sharedClient]getPath:url parameters:Nil
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       @try {
+                                           goods = [Tool readJsonStrToGoodsArray:operation.responseString];
+                                           int length = [goods count];
+                                           NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
+                                           if (length > 1)
+                                           {
+                                               Goods *good = [goods objectAtIndex:length-1];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+                                               [itemArray addObject:item];
+                                           }
+                                           for (int i = 0; i < length; i++)
+                                           {
+                                               Goods *good = [goods objectAtIndex:i];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+                                               [itemArray addObject:item];
+                                               
+                                           }
+                                           //添加第一张图 用于循环
+                                           if (length >1)
+                                           {
+                                               Goods *good = [goods objectAtIndex:0];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
+                                               [itemArray addObject:item];
+                                           }
+                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 200) delegate:self imageItems:itemArray isAuto:NO];
+                                           [bannerView scrollToIndex:0];
+                                           [self.couponIv addSubview:bannerView];
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
@@ -174,11 +237,23 @@
 //顶部图片滑动点击委托协议实现事件
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
-    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title);
-    Coupons *coupon = [coupons objectAtIndex:couponIndex];
-    CouponDetailView *couponDetail = [[CouponDetailView alloc] init];
-    couponDetail.couponsId = coupon.id;
-    [self.navigationController pushViewController:couponDetail animated:YES];
+    if (self.tjCatId != nil && [self.tjCatId length] > 0) {
+        Goods *good = (Goods *)[goods objectAtIndex:couponIndex];
+        if (good) {
+            GoodsDetailView *goodsDetail = [[GoodsDetailView alloc] init];
+            goodsDetail.good = good;
+            [self.navigationController pushViewController:goodsDetail animated:YES];
+        }
+    }
+    else
+    {
+        Coupons *coupon = [coupons objectAtIndex:couponIndex];
+        if (coupon) {
+            CouponDetailView *couponDetail = [[CouponDetailView alloc] init];
+            couponDetail.couponsId = coupon.id;
+            [self.navigationController pushViewController:couponDetail animated:YES];
+        }
+    }
 }
 
 //顶部图片自动滑动委托协议实现事件

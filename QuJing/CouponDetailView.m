@@ -7,6 +7,8 @@
 //
 
 #import "CouponDetailView.h"
+#import "CouponGetView.h"
+#import "UIViewController+CWPopup.h"
 
 @interface CouponDetailView ()
 
@@ -83,7 +85,7 @@
     //图片加载
     EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"nopic1.png"]];
     imageView.imageURL = [NSURL URLWithString:couponDetail.thumb];
-    imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 187.0f);
+    imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 190.0f);
     [self.picIv addSubview:imageView];
     
     //WebView的背景颜色去除
@@ -94,7 +96,6 @@
     NSString *html = [NSString stringWithFormat:@"<body>%@<div id='web_summaryred'>%@</div><div id='web_body'>%@</div></body>", HTML_Style, couponDetail.summary, couponDetail.content];
     NSString *result = [Tool getHTMLString:html];
     [self.webView loadHTMLString:result baseURL:nil];
-    
     //适配iOS7  scrollView计算uinavigationbar高度的问题
     if(IS_IOS7)
     {
@@ -132,70 +133,83 @@
         [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
         return;
     }
-    NSString *getUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_getcoupons];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:getUrl]];
-    [request setUseCookiePersistence:NO];
-    [request setPostValue:appkey forKey:@"APPKey"];
-    [request setPostValue:couponDetail.id forKey:@"coupons_id"];
-    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"id"] forKey:@"userid"];
-    NSLog([[UserModel Instance] getUserValueForKey:@"id"]);
-    [request setDelegate:self];
-    [request setDidFailSelector:@selector(requestFailed:)];
-    [request setDidFinishSelector:@selector(requestGet:)];
-    [request startAsynchronous];
-    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在提交" andView:self.view andHUD:request.hud];
+//    NSString *getUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_getcoupons];
+//    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:getUrl]];
+//    [request setUseCookiePersistence:NO];
+//    [request setPostValue:appkey forKey:@"APPKey"];
+//    [request setPostValue:couponDetail.id forKey:@"coupons_id"];
+//    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"id"] forKey:@"userid"];
+//    NSLog([[UserModel Instance] getUserValueForKey:@"id"]);
+//    [request setDelegate:self];
+//    [request setDidFailSelector:@selector(requestFailed:)];
+//    [request setDidFinishSelector:@selector(requestGet:)];
+//    [request startAsynchronous];
+//    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+//    [Tool showHUD:@"正在提交" andView:self.view andHUD:request.hud];
+    CouponGetView *samplePopupViewController = [[CouponGetView alloc] initWithNibName:@"CouponGetView" bundle:nil];
+    samplePopupViewController.parentView = self;
+    samplePopupViewController.couponId = couponDetail.id;
+    [self presentPopupViewController:samplePopupViewController animated:YES completion:^(void) {
+        NSLog(@"popup view presented");
+    }];
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-    if (request.hud) {
-        [request.hud hide:NO];
-    }
+- (void)willPresentAlertView:(UIAlertView *)alertView{
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(27.0, 60.0, 230.0, 25.0)];
+    [textField setBackgroundColor:[UIColor redColor]];
+    [textField setPlaceholder:@"起点"];
+    [alertView addSubview:textField];
 }
 
-- (void)requestGet:(ASIHTTPRequest *)request
-{
-    if (request.hud) {
-        [request.hud hide:YES];
-    }
-    [request setUseCookiePersistence:YES];
-    User *user = [Tool readJsonStrToUser:request.responseString];
-    
-    int errorCode = [user.status intValue];
-    switch (errorCode) {
-        case 1:
-        {
-            [self.getBtn setTitle:@"已领取" forState:UIControlStateNormal];
-            self.getBtn.enabled = NO;
-            [Tool showCustomHUD:user.info andView:self.view  andImage:@"37x-Checkmark.png" andAfterDelay:1];
-        }
-            break;
-        case 0:
-        {
-            [Tool showCustomHUD:user.info andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
-        }
-            break;
-    }
-}
+//- (void)requestFailed:(ASIHTTPRequest *)request
+//{
+//    if (request.hud) {
+//        [request.hud hide:NO];
+//    }
+//}
+//
+//- (void)requestGet:(ASIHTTPRequest *)request
+//{
+//    if (request.hud) {
+//        [request.hud hide:YES];
+//    }
+//    [request setUseCookiePersistence:YES];
+//    User *user = [Tool readJsonStrToUser:request.responseString];
+//    
+//    int errorCode = [user.status intValue];
+//    switch (errorCode) {
+//        case 1:
+//        {
+//            [self.getBtn setTitle:@"已领取" forState:UIControlStateNormal];
+//            self.getBtn.enabled = NO;
+//            [Tool showCustomHUD:user.info andView:self.view  andImage:@"37x-Checkmark.png" andAfterDelay:1];
+//        }
+//            break;
+//        case 0:
+//        {
+//            [Tool showCustomHUD:user.info andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+//        }
+//            break;
+//    }
+//}
 
-- (void)checkIsGot
-{
-    if ([[UserModel Instance] isLogin]) {
-        NSString *detailUrl = [NSString stringWithFormat:@"%@%@?APPKey=%@&coupons_id=%@&userid=%@", api_base_url, api_couponsisget, appkey, self.couponsId, [[UserModel Instance] getUserValueForKey:@"id"]];
-        NSURL *url = [ NSURL URLWithString : detailUrl];
-        ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
-        // 开始同步请求
-        [request startSynchronous ];
-        NSError *error = [request error ];
-        assert (!error);
-        NSString *value = (NSString *)[request responseString];
-        if ([value isEqualToString:@"1"]) {
-            [self.getBtn setTitle:@"已领取" forState:UIControlStateNormal];
-            self.getBtn.enabled = NO;
-        }
-    }
-}
+//- (void)checkIsGot
+//{
+//    if ([[UserModel Instance] isLogin]) {
+//        NSString *detailUrl = [NSString stringWithFormat:@"%@%@?APPKey=%@&coupons_id=%@&userid=%@", api_base_url, api_couponsisget, appkey, self.couponsId, [[UserModel Instance] getUserValueForKey:@"id"]];
+//        NSURL *url = [ NSURL URLWithString : detailUrl];
+//        ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
+//        // 开始同步请求
+//        [request startSynchronous ];
+//        NSError *error = [request error ];
+//        assert (!error);
+//        NSString *value = (NSString *)[request responseString];
+//        if ([value isEqualToString:@"1"]) {
+//            [self.getBtn setTitle:@"已领取" forState:UIControlStateNormal];
+//            self.getBtn.enabled = NO;
+//        }
+//    }
+//}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -205,7 +219,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self checkIsGot];
+//    [self checkIsGot];
 }
 
 @end

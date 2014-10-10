@@ -256,6 +256,7 @@
     if (shop) {
         ConvOrderView *convView = [[ConvOrderView alloc] init];
         convView.shop = shop;
+        convView.mycoor = mycoor;
         convView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:convView animated:YES];
     }
@@ -307,6 +308,7 @@
     if (userLocation.location.coordinate.latitude > 0) {
         [self reload];
         [_locService stopUserLocationService];
+        mycoor = mycoord;
     }
 }
 

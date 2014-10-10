@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 #import "StoreMapPointView.h"
+#import "RouteSearchView.h"
 
 @interface ConvOrderView : UIViewController<UIWebViewDelegate>
 {
@@ -17,6 +18,7 @@
     UIWebView *phoneCallWebView;
 }
 
+@property  CLLocationCoordinate2D mycoor;
 @property (weak, nonatomic) Shop *shop;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

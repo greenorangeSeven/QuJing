@@ -312,6 +312,7 @@
 
 - (IBAction)shareAction:(id)sender {
     Advertisement *adv = [advDatas objectAtIndex:advIndex];
+    NSString *shareStr = [Tool flattenHTML:adv.content];
     if (adv) {
         NSDictionary *contentDic = [NSDictionary dictionaryWithObjectsAndKeys:
                                     adv.title , @"title",

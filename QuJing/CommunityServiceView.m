@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
     //适配iOS7uinavigationbar遮挡问题
     if(IS_IOS7)
     {
@@ -158,6 +158,7 @@
         if (!noRefresh) {
             allCount = 0;
         }
+        [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
         int pageIndex = allCount / 20 + 1;
         NSMutableString *tempUrl = [NSMutableString stringWithFormat:@"%@%@?APPKey=%@&p=%i", api_base_url, api_get_services_list, appkey,pageIndex];
         NSString *cid = [[UserModel Instance] getUserValueForKey:@"cid"];
@@ -184,6 +185,9 @@
                 [NdUncaughtExceptionHandler TakeException:exception];
             }
             @finally {
+                if (hud != nil) {
+                    [hud hide:YES];
+                }
                 [self doneLoadingTableViewData];
             }
             
@@ -320,7 +324,7 @@
             }
             CommService *comm = [serviceArray objectAtIndex:[indexPath row]];
             cell.titleLb.text = comm.title;
-            cell.summaryLb.text = comm.summary;
+            cell.summaryLb.text = [NSString stringWithFormat:@"%@-点击拨打",  comm.summary];
             if (comm.imgData) {
                 cell.thumImg.image = comm.imgData;
             }

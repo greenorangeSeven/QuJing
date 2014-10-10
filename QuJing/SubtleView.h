@@ -12,7 +12,7 @@
 @interface SubtleView : UIViewController<SGFocusImageFrameDelegate>
 {
     MBProgressHUD *hud;
-    NSMutableArray *goods;
+    NSMutableArray *coupons;
     SGFocusImageFrame *bannerView;
     int goodIndex;
 }
