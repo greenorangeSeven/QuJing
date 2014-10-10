@@ -139,7 +139,7 @@
             [userModel saveValue:user.comm_name ForKey:@"comm_name"];
             [userModel saveValue:user.build_name ForKey:@"build_name"];
             
-            NSArray *tags = [[NSArray alloc] initWithObjects:user.cid, [NSString stringWithFormat:@"userid%@", user.cid], nil];
+            NSArray *tags = [[NSArray alloc] initWithObjects:user.cid, [NSString stringWithFormat:@"userid%@", user.id], nil];
             [BPush setTags:tags];
             
             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"登录提醒"

@@ -52,7 +52,7 @@
 {
     [super viewDidLoad];
     UserModel *usermodel = [UserModel Instance];
-    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
     faceEGOImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"userface.png"]];
     faceEGOImageView.imageURL = [NSURL URLWithString:[[UserModel Instance] getUserValueForKey:@"avatar"]];
     faceEGOImageView.frame = CGRectMake(0.0f, 0.0f, 65.0f, 65.0f);
