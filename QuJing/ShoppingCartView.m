@@ -11,7 +11,9 @@
 #import "ShoppingBuyView.h"
 
 @interface ShoppingCartView ()
-
+{
+    double countPrice;
+}
 @end
 
 @implementation ShoppingCartView
@@ -136,6 +138,7 @@
     }
     if ([goodData count] > 0) {
         self.totalLb.text = [NSString stringWithFormat:@"%.2f", total];
+        countPrice = total;
     }
     else
     {
@@ -277,6 +280,7 @@
     {
         ShoppingBuyView *shoppingBuyView = [[ShoppingBuyView alloc] init];
         shoppingBuyView.hidesBottomBarWhenPushed = YES;
+        shoppingBuyView.countPrice = countPrice;
         [self.navigationController pushViewController:shoppingBuyView animated:YES];
     }
     else
