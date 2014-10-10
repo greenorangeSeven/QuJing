@@ -10,6 +10,7 @@
 
 @interface ShoppingBuyView : UIViewController
 
+@property double countPrice;
 @property (weak, nonatomic) Goods *goods;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
