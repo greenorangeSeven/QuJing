@@ -51,6 +51,7 @@
 
 //异步加载图片专用
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic, retain) NSMutableDictionary *thumbDownloadsInProgress;
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoIV;
 

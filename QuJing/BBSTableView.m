@@ -88,6 +88,7 @@
     }
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+    self.thumbDownloadsInProgress = [NSMutableDictionary dictionary];
     allCount = 0;
     [_refreshHeaderView refreshLastUpdatedDate];
     self.view.backgroundColor = [Tool getBackgroundColor];
@@ -140,6 +141,8 @@
     _refreshHeaderView = nil;
     [bbsArray removeAllObjects];
     [_imageDownloadsInProgress removeAllObjects];
+    [_thumbDownloadsInProgress removeAllObjects];
+    
     bbsArray = nil;
     _iconCache = nil;
     [super viewDidUnload];
@@ -148,9 +151,13 @@
 {
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    
+    NSArray *thumbAllDownloads = [self.thumbDownloadsInProgress allValues];
+    [thumbAllDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     //清空
     for (BBSModel *c in bbsArray) {
         c.imgData = nil;
+        c.thumbData = nil;
     }
     
     [super didReceiveMemoryWarning];
@@ -161,6 +168,7 @@
     allCount = 0;
     [bbsArray removeAllObjects];
     [_imageDownloadsInProgress removeAllObjects];
+    [_thumbDownloadsInProgress removeAllObjects];
     isLoadOver = NO;
 }
 
@@ -169,6 +177,9 @@
     if (self.imageDownloadsInProgress != nil) {
         NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
         [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+        
+        NSArray *thumbAllDownloads = [self.thumbDownloadsInProgress allValues];
+        [thumbAllDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     }
 }
 
@@ -296,24 +307,42 @@
     }
 }
 
+- (void)startIconDownload2:(ImgRecord *)imgRecord forIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *key = [NSString stringWithFormat:@"%d",[indexPath row]];
+    IconDownloader *iconDownloader = [_thumbDownloadsInProgress objectForKey:key];
+    if (iconDownloader == nil) {
+        iconDownloader = [[IconDownloader alloc] init];
+        iconDownloader.imgRecord = imgRecord;
+        iconDownloader.index = key;
+        iconDownloader.delegate = self;
+        [_thumbDownloadsInProgress setObject:iconDownloader forKey:key];
+        [iconDownloader startDownload];
+    }
+}
+
 - (void)appImageDidLoad:(NSString *)index
 {
-    IconDownloader *iconDownloader = [_imageDownloadsInProgress objectForKey:index];
-    if (iconDownloader)
-    {
-        int _index = [index intValue];
-        if (_index >= [bbsArray count])
-        {
-            return;
+    int _index = [index intValue];
+    if (_index >= [bbsArray count]) {
+        return;
+    }
+    BBSModel *t = [bbsArray objectAtIndex:[index intValue]];
+    if (t) {
+        IconDownloader *iconDownloader = [_imageDownloadsInProgress objectForKey:index];
+        if (iconDownloader) {
+            t.imgData = iconDownloader.imgRecord.img;
         }
-        BBSModel *c = [bbsArray objectAtIndex:[index intValue]];
-        if (c) {
-            c.imgData = iconDownloader.imgRecord.img;
-            // cache it
-            NSData * imageData = UIImagePNGRepresentation(c.imgData);
-            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:c.avatar]];
-            [self.tableView reloadData];
+        
+        IconDownloader *iconTweet = [_thumbDownloadsInProgress objectForKey:index];
+        if (iconTweet) {
+            t.thumbData = iconTweet.imgRecord.img;
         }
+        // cache it
+        NSData * imageData = UIImagePNGRepresentation(t.imgData);
+        [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:t.avatar]];
+        [self.tableView reloadData];
+        
     }
 }
 
@@ -382,10 +411,26 @@
                 cell.imageIv.frame = CGRectMake(cell.imageIv.frame .origin.x, cell.contentLb.frame.origin.y + cell.contentLb.frame.size.height, cell.imageIv.frame.size.width, cell.imageIv.frame.size.height);
                 cell.timeView.frame = CGRectMake(cell.timeView.frame .origin.x, cell.imageIv.frame.origin.y + cell.imageIv.frame.size.height, cell.timeView.frame.size.width, cell.timeView.frame.size.height);
                 
-                EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"nopic2.png"]];
-                imageView.imageURL = [NSURL URLWithString:[bbs.thumb objectAtIndex:0]];
-                imageView.frame = CGRectMake(0.0f, 0.0f, cell.imageIv.frame.size.width, cell.imageIv.frame.size.height);
-                [cell.imageIv addSubview:imageView];
+//                EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadpic2.png"]];
+//                imageView.imageURL = [NSURL URLWithString:[bbs.thumb objectAtIndex:0]];
+//                imageView.frame = CGRectMake(0.0f, 0.0f, cell.imageIv.frame.size.width, cell.imageIv.frame.size.height);
+//                [cell.imageIv addSubview:imageView];
+//                
+                if (bbs.thumbData == nil)
+                {
+                    IconDownloader *d = [_thumbDownloadsInProgress objectForKey:[NSString stringWithFormat:@"%d", [indexPath row]]];
+                    if (d == nil) {
+                        ImgRecord *r = [ImgRecord new];
+                        r.url = [bbs.thumb objectAtIndex:0];
+                        [self startIconDownload2:r forIndexPath:indexPath];
+                    }
+                }
+                else
+                {
+                    cell.imageIv.image = bbs.thumbData;
+                }
+                
+                
                 //注册Cell按钮点击事件
                 UITap *clickPicTap = [[UITap alloc] initWithTarget:self action:@selector(clickPicAction:)];
                 [cell.imageIv addGestureRecognizer:clickPicTap];

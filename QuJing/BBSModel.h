@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSArray *reply_list;
 @property (nonatomic, retain) NSArray *replyArray;
 @property (retain,nonatomic) UIImage * imgData;
+@property (retain,nonatomic) UIImage * thumbData;
 @property (nonatomic,retain) NSString *timeStr;
 @property int contentHeight;
 @property (nonatomic,retain) NSMutableString *replysStr;

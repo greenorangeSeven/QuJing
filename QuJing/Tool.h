@@ -138,6 +138,8 @@
 + (void)pushToMyView:(UINavigationController *)navigationController;
 
 + (NSString *)flattenHTML:(NSString *)html;
++ (BOOL)testAlipayInstall;
++ (BOOL)testWeiXinInstall;
 
 + (User *)readJsonStrToUser:(NSString *)str;
 + (AlipayInfo *)readJsonStrToAliPay:(NSString *)str;

@@ -159,6 +159,18 @@
 	_pagingScrollView.backgroundColor = [UIColor blackColor];
     _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 	[self.view addSubview:_pagingScrollView];
+    
+    
+//    CGRect frame = self.view.bounds;// [[UIScreen mainScreen] bounds];
+//    frame.origin.x = 0;
+//    frame.origin.y = 200;
+//    frame.size.width = 320;
+//    frame.size.height = 50;
+//    UILabel *lab = [[UILabel alloc] initWithFrame:frame];
+//    lab.frame = frame;
+//    lab.text = @"dddddd";
+//    lab.textColor = [UIColor whiteColor];
+//    [self.view addSubview:lab];
 	
     // Toolbar
     _toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];

@@ -62,13 +62,13 @@
     [request setUseCookiePersistence:[[UserModel Instance] isLogin]];
     [request setPostValue:appkey forKey:@"APPKey"];
     UserModel *usermodel = [UserModel Instance];
-    [request setPostValue:@"   " forKey:@"subject"];
+    [request setPostValue:@"www.668app.com" forKey:@"subject"];
     [request setPostValue:[usermodel getUserValueForKey:@"id"] forKey:@"userid"];
     [request setPostValue:self.cid forKey:@"cid"];
     [request setPostValue:contentStr forKey:@"content"];
     if (picimage != nil) {
-        [request addData:UIImageJPEGRepresentation(picimage, 0.75f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:@"pics"];
-        [request addData:UIImageJPEGRepresentation(picimage, 0.75f) withFileName:@"111.jpg" andContentType:@"image/jpeg" forKey:@"pics"];
+        [request addData:UIImageJPEGRepresentation(picimage, 0.65f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:@"pics"];
+//        [request addData:UIImageJPEGRepresentation(picimage, 0.75f) withFileName:@"111.jpg" andContentType:@"image/jpeg" forKey:@"pics"];
     }
     request.delegate = self;
     request.tag = 11;

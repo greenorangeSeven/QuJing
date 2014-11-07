@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="addressField" destination="8dO-BC-gdk" id="1Uf-D3-USq"/>
                 <outlet property="nameField" destination="z28-eE-D68" id="vA2-tD-E8K"/>
+                <outlet property="payfeeBtn" destination="YTH-y9-zYU" id="6lr-wV-cax"/>
                 <outlet property="phoneField" destination="rlc-al-aFa" id="wJP-Us-hm9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

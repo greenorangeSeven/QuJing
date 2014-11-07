@@ -1571,9 +1571,9 @@
 				14382B6519C5F2AC0089CDCF /* AlixPaylib_arc.a in Frameworks */,
 				14382CD619C5F4DD0089CDCF /* TencentWeiboConnection.framework in Frameworks */,
 				1438275D19C5F0290089CDCF /* libz.1.2.5.dylib in Frameworks */,
+				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				14382B3319C5F2690089CDCF /* libbaidumapapi.a in Frameworks */,
 				1438275B19C5F0200089CDCF /* Security.framework in Frameworks */,
-				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				14382CD519C5F4DD0089CDCF /* SinaWeiboConnection.framework in Frameworks */,
 				14382BFD19C5F4830089CDCF /* KeyboardManager.framework in Frameworks */,
 				1438275919C5F0180089CDCF /* libsqlite3.dylib in Frameworks */,
@@ -1665,7 +1665,7 @@
 				14382B7119C5F3410089CDCF /* AFNetwork */,
 				14382BC319C5F3B40089CDCF /* AsyncImg */,
 				14382B4219C5F2AC0089CDCF /* alipay */,
-				14382BF919C5F4830089CDCF /* IQKeyboardManager Framework */,
+				14382BF919C5F4830089CDCF /* IQKeyboardManager */,
 				14382BF519C5F4680089CDCF /* GCDiscreetNotificationView */,
 				14382BE119C5F4020089CDCF /* EGOImageLoading */,
 				14382CAA19C5F4D20089CDCF /* SGFocusImage */,
@@ -2678,13 +2678,13 @@
 			path = GCDiscreetNotificationView;
 			sourceTree = "<group>";
 		};
-		14382BF919C5F4830089CDCF /* IQKeyboardManager Framework */ = {
+		14382BF919C5F4830089CDCF /* IQKeyboardManager */ = {
 			isa = PBXGroup;
 			children = (
 				14382BFA19C5F4830089CDCF /* IQKeyboardManager.bundle */,
 				14382BFB19C5F4830089CDCF /* KeyboardManager.framework */,
 			);
-			path = "IQKeyboardManager Framework";
+			path = IQKeyboardManager;
 			sourceTree = "<group>";
 		};
 		14382BFE19C5F48D0089CDCF /* KxMenu */ = {
@@ -3714,7 +3714,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3730,8 +3731,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "E5658B00-36F5-4F1D-A0E0-C8C7AE866539";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3752,7 +3754,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3762,7 +3765,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "E5658B00-36F5-4F1D-A0E0-C8C7AE866539";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3777,6 +3781,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -3799,28 +3804,6 @@
 					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
 					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuJing/QuJing-Prefix.pch";
@@ -3830,7 +3813,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "QuJing/QuJing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3843,6 +3826,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E5658B00-36F5-4F1D-A0E0-C8C7AE866539";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3856,6 +3840,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -3878,28 +3863,6 @@
 					Framework,
 					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
 					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
-					"$(PROJECT_DIR)/QuJing/IQKeyboardManager",
-					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuJing/QuJing-Prefix.pch";
@@ -3909,7 +3872,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "QuJing/QuJing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3922,6 +3885,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E5658B00-36F5-4F1D-A0E0-C8C7AE866539";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

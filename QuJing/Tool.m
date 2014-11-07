@@ -434,6 +434,28 @@
     return html;
 }
 
++ (BOOL)testAlipayInstall
+{
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"alipay://"]]) {
+        NSLog(@"支付宝install--");
+        return YES;
+    }else{
+        NSLog(@"支付宝no---");
+        return NO;
+    }
+}
+
++ (BOOL)testWeiXinInstall
+{
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weixin://"]]) {
+        NSLog(@"微信install--");
+        return YES;
+    }else{
+        NSLog(@"微信no---");
+        return NO;
+    }
+}
+
 + (void)shareAction:(UIButton *)sender andShowView:(UIView *)view andContent:(NSDictionary *)shareContent {
 //    Activity *activity = [[Activity alloc] init];
     //构造分享内容
@@ -513,14 +535,22 @@
                                                                          }];
     
     //创建自定义分享列表
-    NSArray *shareList = [ShareSDK customShareListWithType:
-//                          sinaItem,
-                          tencentItem,
-                          SHARE_TYPE_NUMBER(ShareTypeWeixiSession),
-                          SHARE_TYPE_NUMBER(ShareTypeWeixiTimeline),
-                          nil];
+    NSArray *shareList = [[NSArray alloc] init];
     
-    
+    if ([self testWeiXinInstall]) {
+        shareList = [ShareSDK customShareListWithType:
+                     //                          sinaItem,
+                     tencentItem,
+                     SHARE_TYPE_NUMBER(ShareTypeWeixiSession),
+                     SHARE_TYPE_NUMBER(ShareTypeWeixiTimeline),
+                     nil];
+    }
+    else
+    {
+        shareList = [ShareSDK customShareListWithType:
+                     tencentItem,
+                     nil];
+    }
     
     NSArray *oneKeyShareList = [ShareSDK getShareListWithType:
                                 ShareTypeSinaWeibo,

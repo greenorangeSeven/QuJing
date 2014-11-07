@@ -188,18 +188,18 @@
         [[AFOSCClient sharedClient]getPath:url parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
-                                           goods = [Tool readJsonStrToGoodsArray:operation.responseString];
-                                           int length = [goods count];
+                                           coupons = [Tool readJsonStrToGoodsArray:operation.responseString];
+                                           int length = [coupons count];
                                            NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
                                            if (length > 1)
                                            {
-                                               Goods *good = [goods objectAtIndex:length-1];
+                                               Goods *good = [coupons objectAtIndex:length-1];
                                                SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
                                                [itemArray addObject:item];
                                            }
                                            for (int i = 0; i < length; i++)
                                            {
-                                               Goods *good = [goods objectAtIndex:i];
+                                               Goods *good = [coupons objectAtIndex:i];
                                                SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
                                                [itemArray addObject:item];
                                                
@@ -207,7 +207,7 @@
                                            //添加第一张图 用于循环
                                            if (length >1)
                                            {
-                                               Goods *good = [goods objectAtIndex:0];
+                                               Goods *good = [coupons objectAtIndex:0];
                                                SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:good.thumb tag:-1];
                                                [itemArray addObject:item];
                                            }

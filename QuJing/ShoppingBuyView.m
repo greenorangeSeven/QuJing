@@ -70,6 +70,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buyOK) name:@"buyOK" object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if ([Tool testAlipayInstall]) {
+        self.payfeeBtn.hidden = NO;
+    }
+    else
+    {
+        self.payfeeBtn.hidden = YES;
+    }
+}
+
+
 - (void)buyOK
 {
    
@@ -168,6 +182,7 @@
             }
             business.goodlist = goodArray;
             business.amount = [NSNumber numberWithFloat:businessAmount];
+            self.countPrice = businessAmount;
             [orderBusinessArray addObject:business];
         }
         orderInfo.businessOrderList = orderBusinessArray;
@@ -191,6 +206,7 @@
         
         business.goodlist = goodArray;
         business.amount = [NSNumber numberWithFloat:businessAmount];
+        self.countPrice = businessAmount;
         [orderBusinessArray addObject:business];
         
         orderInfo.businessOrderList = orderBusinessArray;
@@ -219,7 +235,7 @@
     [request startAsynchronous];
     
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"缴费中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"付费中..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
