@@ -68,6 +68,7 @@
     self.phoneField.text =[user getUserValueForKey:@"tel"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buyOK) name:@"buyOK" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buyCancel) name:@"buyCancel" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,9 +85,34 @@
 }
 
 
+- (void)buyCancel
+{
+    
+//    FMDatabase* database=[FMDatabase databaseWithPath:[Tool databasePath]];
+//    if (![database open]) {
+//        NSLog(@"Open database failed");
+//        return;
+//    }
+//    if (![database tableExists:@"shoppingcart"])
+//    {
+//        [database executeUpdate:createshoppingcart];
+//    }
+//    BOOL isOK = [database executeUpdate:@"DELETE FROM shoppingcart"];
+//    if(isOK)
+//    {
+//        NSLog(@"数据已清空");
+//    }
+//    
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                 message:@"支付未成功"                         delegate:self
+                                       cancelButtonTitle:@"确定"
+                                       otherButtonTitles:nil];
+    [av show];
+}
+
 - (void)buyOK
 {
-   
+    
     FMDatabase* database=[FMDatabase databaseWithPath:[Tool databasePath]];
     if (![database open]) {
         NSLog(@"Open database failed");
@@ -101,6 +127,7 @@
     {
         NSLog(@"数据已清空");
     }
+    [self.payfeeBtn setEnabled:NO];
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"提示"
                                                  message:@"支付成功"                         delegate:self
                                        cancelButtonTitle:@"确定"
@@ -111,8 +138,11 @@
 //弹出框事件
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-   [self.navigationController popViewControllerAnimated:YES];
+//    [[UserModel Instance] saveValue:@"goMyOrder" ForKey:@"goMyOrder"];
+//    [self.navigationController popViewControllerAnimated:YES];
+    MyOrderView *myOrderView = [[MyOrderView alloc] init];
+    myOrderView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:myOrderView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -276,10 +306,12 @@
             pro.out_no = num.serial_no;
             pro.subject = @"曲靖智慧社区订单付款";
             pro.body = @"订单在线付款";
+//            pro.price = 0.01;
             pro.price = self.countPrice;
-//            pro.partnerID = [usermodel getUserValueForKey:@"DEFAULT_PARTNER"];
-//            pro.partnerPrivKey = [usermodel getUserValueForKey:@"PRIVATE"];
-//            pro.sellerID = [usermodel getUserValueForKey:@"DEFAULT_SELLER"];
+            [[UserModel Instance] saveValue:@"shoppingBuyView" ForKey:@"ailpayFromView"];
+            //            pro.partnerID = [usermodel getUserValueForKey:@"DEFAULT_PARTNER"];
+            //            pro.partnerPrivKey = [usermodel getUserValueForKey:@"PRIVATE"];
+            //            pro.sellerID = [usermodel getUserValueForKey:@"DEFAULT_SELLER"];
             pro.partnerID = [usermodel getDefaultPartner];
             pro.partnerPrivKey = [usermodel getPrivate];
             pro.sellerID = [usermodel getSeller];

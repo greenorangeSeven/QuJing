@@ -54,10 +54,21 @@ BMKMapManager* _mapManager;
     [BPush setupChannel:launchOptions]; // 必须
     [BPush setDelegate:self]; // 必须。参数对象必须实现onMethod: response:方法，本示例中为self
     // [BPush setAccessToken:@"3.ad0c16fa2c6aa378f450f54adb08039.2592000.1367133742.282335-602025"];  // 可选。api key绑定时不需要，也可在其它时机调用
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeAlert
-     | UIRemoteNotificationTypeBadge
-     | UIRemoteNotificationTypeSound];
+//    [application registerForRemoteNotificationTypes:
+//     UIRemoteNotificationTypeAlert
+//     | UIRemoteNotificationTypeBadge
+//     | UIRemoteNotificationTypeSound];
+#if SUPPORT_IOS8
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIUserNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else
+#endif
+    {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:mainPageNav ];
@@ -245,6 +256,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     //结果处理
     AlixPayResult* result = [self handleOpenURL:url];
+//    shoppingBuyView
+    NSString *fromView = [[UserModel Instance] getUserValueForKey:@"ailpayFromView"];
     
 	if (result)
     {
@@ -262,18 +275,51 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
             verifier = CreateRSADataVerifier(key);
             if ([verifier verifyString:result.resultString withSign:result.signString])
             {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"buyOK" object:nil];
+                if ([fromView isEqualToString:@"shoppingBuyView"]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"buyOK" object:nil];
+                }
+//                stewardFeeView   sFeeOK
+                else if ([fromView isEqualToString:@"stewardFeeView"])
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"sFeeOK" object:nil];
+                }
+//                parkFeeView
+                else if ([fromView isEqualToString:@"parkFeeView"])
+                {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"pFeeOK" object:nil];
+                }
             }
-            
         }
         else
         {
             //交易失败
+            if ([fromView isEqualToString:@"shoppingBuyView"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"buyCancel" object:nil];
+            }
+            else if ([fromView isEqualToString:@"stewardFeeView"])
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"sFeeCancel" object:nil];
+            }
+            else if ([fromView isEqualToString:@"parkFeeView"])
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"pFeeCancel" object:nil];
+            }
         }
     }
     else
     {
         //失败
+        if ([fromView isEqualToString:@"shoppingBuyView"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"buyCancel" object:nil];
+        }
+        else if ([fromView isEqualToString:@"stewardFeeView"])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"sFeeCancel" object:nil];
+        }
+        else if ([fromView isEqualToString:@"parkFeeView"])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pFeeCancel" object:nil];
+        }
     }
     
 }

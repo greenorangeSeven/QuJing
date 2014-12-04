@@ -45,7 +45,42 @@
     faceEGOImageView.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
     [self.faceIv addSubview:faceEGOImageView];
     [self getParkFee];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showAlertView) name:Notification_ShowPackAlertView object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payFeepParkOK) name:@"pFeeOK" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payFeeParkCancel) name:@"pFeeCancel" object:nil];
+}
+
+- (void)payFeeParkCancel
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                 message:@"缴费未成功"
+                                                delegate:self
+                                       cancelButtonTitle:@"确定"
+                                       otherButtonTitles:nil];
+    av.tag = 1;
+    [av show];
+}
+
+- (void)payFeepParkOK
+{
+    [self.payfeeBtn setEnabled:NO];
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                 message:@"缴费成功"
+                                                delegate:self
+                                       cancelButtonTitle:@"确定"
+                                       otherButtonTitles:nil];
+    av.tag = 1;
+    [av show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1)
+    {
+        FeeHistoryView *feeHistoryView = [[FeeHistoryView alloc] init];
+        feeHistoryView.hidesBottomBarWhenPushed = YES;
+        feeHistoryView.isShowPark = YES;
+        [self.navigationController pushViewController:feeHistoryView animated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -76,6 +111,7 @@
                                            if (!json) {
                                                self.parkInfoLb.text = operation.responseString;
                                                self.payfeeBtn.enabled = NO;
+                                               self.presetBtn.enabled = NO;
                                                havePackFee = NO;
                                            }
                                            else
@@ -170,17 +206,38 @@
 
 - (IBAction)showPresetAction:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n"
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"确  定", nil];
-    actionSheet.tag = 0;
-    [actionSheet showInView:self.parentView];
-    UIPickerView *catePicker = [[UIPickerView alloc] init];
-    catePicker.delegate = self;
-    catePicker.showsSelectionIndicator = YES;
-    [actionSheet addSubview:catePicker];
+    if (IS_IOS8) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                       message:@"\n\n\n\n\n\n\n\n\n\n"
+                                                                preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIPickerView *catePicker = [[UIPickerView alloc] init];
+        catePicker.delegate = self;
+        catePicker.showsSelectionIndicator = YES;
+        [alert.view addSubview:catePicker];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    double sumMoney = shouldMoney + presetMoney;
+                                                    self.sumMoneyLb.text = [NSString stringWithFormat:@"￥%0.2f元", sumMoney];
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n"
+                                                                 delegate:self
+                                                        cancelButtonTitle:nil
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"确  定", nil];
+        actionSheet.tag = 0;
+        [actionSheet showInView:self.parentView];
+        UIPickerView *catePicker = [[UIPickerView alloc] init];
+        catePicker.delegate = self;
+        catePicker.showsSelectionIndicator = YES;
+        [actionSheet addSubview:catePicker];
+    }
 }
 
 #pragma mark 付费按钮事件处理
@@ -248,6 +305,7 @@
     switch (errorCode) {
         case 1:
         {
+            [[UserModel Instance] saveValue:@"parkFeeView" ForKey:@"ailpayFromView"];
             PayOrder *pro = [[PayOrder alloc] init];
             pro.out_no = num.trade_no;
             pro.subject = @"曲靖智慧社区停车费";

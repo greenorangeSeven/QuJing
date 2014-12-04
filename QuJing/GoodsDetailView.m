@@ -32,12 +32,6 @@
         [lBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
         UIBarButtonItem *btnBack = [[UIBarButtonItem alloc]initWithCustomView:lBtn];
         self.navigationItem.leftBarButtonItem = btnBack;
-        
-        UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-        [rBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-        [rBtn setImage:[UIImage imageNamed:@"head_shopcar"] forState:UIControlStateNormal];
-        UIBarButtonItem *btnShopCar = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
-        self.navigationItem.rightBarButtonItem = btnShopCar;
     }
     return self;
 }
@@ -56,6 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"nopic4.png"]];
     imageView.imageURL = [NSURL URLWithString:self.good.thumb];
     imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 213.0f);
@@ -108,6 +103,27 @@
 {
     [super didReceiveMemoryWarning];
     [self.webView stopLoading];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([Tool testAlipayInstall]) {
+        self.addShopCarBtn.hidden = NO;
+        self.buyNowBtn.hidden = NO;
+        
+        UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        [rBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        [rBtn setImage:[UIImage imageNamed:@"head_shopcar"] forState:UIControlStateNormal];
+        UIBarButtonItem *btnShopCar = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
+        self.navigationItem.rightBarButtonItem = btnShopCar;
+    }
+    else
+    {
+        self.addShopCarBtn.hidden = YES;
+        self.buyNowBtn.hidden = YES;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLb;
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIButton *addShopCarBtn;
+@property (weak, nonatomic) IBOutlet UIButton *buyNowBtn;
 
 - (IBAction)toShoppingCartAction:(id)sender;
 - (IBAction)buyAction:(id)sender;

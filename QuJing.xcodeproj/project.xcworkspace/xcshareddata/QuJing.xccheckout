@@ -10,29 +10,29 @@
 	<string>QuJing</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>F32DA5F2-2162-4248-A54D-30E8A3A3D1A3</key>
+		<key>B8E3AAAD612F1CC240F3C40294AB23D60E6E6C4E</key>
 		<string>https://github.com/greenorangeSeven/QuJing.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>QuJing.xcodeproj/project.xcworkspace</string>
+	<string>QuJing.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>F32DA5F2-2162-4248-A54D-30E8A3A3D1A3</key>
+		<key>B8E3AAAD612F1CC240F3C40294AB23D60E6E6C4E</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/greenorangeSeven/QuJing.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F32DA5F2-2162-4248-A54D-30E8A3A3D1A3</string>
+	<string>B8E3AAAD612F1CC240F3C40294AB23D60E6E6C4E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F32DA5F2-2162-4248-A54D-30E8A3A3D1A3</string>
+			<string>B8E3AAAD612F1CC240F3C40294AB23D60E6E6C4E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>QuJing</string>
 		</dict>

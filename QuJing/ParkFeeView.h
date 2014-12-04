@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 
-@interface ParkFeeView : UIViewController<UIActionSheetDelegate, UIPickerViewDelegate>
+@interface ParkFeeView : UIViewController<UIActionSheetDelegate, UIPickerViewDelegate,UIAlertViewDelegate>
 {
     UserModel *usermodel;
     double monthFee;

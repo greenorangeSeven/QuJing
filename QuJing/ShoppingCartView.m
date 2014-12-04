@@ -106,7 +106,7 @@
         return;
     }
     noDataLabel.hidden = YES;
-    [self reloadData];
+    [self reloadData];//goMyOrder
 }
 
 //取数方法
