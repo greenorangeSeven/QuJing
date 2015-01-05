@@ -22,7 +22,7 @@
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.text = @"搜索";
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textColor = [Tool getColorForGreen];
+        titleLabel.textColor = [UIColor whiteColor];
         titleLabel.textAlignment = UITextAlignmentCenter;
         self.navigationItem.titleView = titleLabel;
         
@@ -53,7 +53,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:1.0];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.74 green:0.78 blue:0.81 alpha:1];
     
     noDataLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height/2, 320, 44)];
     noDataLabel.font = [UIFont boldSystemFontOfSize:18];
@@ -63,13 +63,15 @@
     noDataLabel.textAlignment = UITextAlignmentCenter;
     noDataLabel.hidden = YES;
     [self.view addSubview:noDataLabel];
-    
-    //适配iOS7  scrollView计算uinavigationbar高度的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 //数组排序
@@ -163,7 +165,7 @@
         }
         Shop *shop = [shopData objectAtIndex:[indexPath row]];
         
-        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"nopic2.png"]];
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
         imageView.imageURL = [NSURL URLWithString:shop.logo];
         imageView.frame = CGRectMake(0.0f, 0.0f, 116.0f, 61.0f);
         [cell.logo addSubview:imageView];
